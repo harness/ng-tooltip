@@ -130,3 +130,42 @@ imagePath_imagePath: |+
     Wildcards are not supported.
 
 imagePath_tag: Enter the Docker [image tag](https://docs.docker.com/engine/reference/commandline/tag/).
+harnessApproval_name: |-
+    Enter a name for this **Manual Approval** step.
+    [Learn More about Manual Approvals](https://ngdocs.harness.io/article/43pzzhrcbv)
+harnessApproval_spec.includePipelineExecutionHistory: |-
+    Enable this option to show approvers the Pipeline's execution history. This can help an approver compare the current execution info with historical data.
+    [Learn More about Manual Approvals](https://ngdocs.harness.io/article/43pzzhrcbv)
+harnessApproval_spec.approvers.userGroups: |-
+    Select the Harness User Groups that will approve the step.
+    Learn More about [Manual Approvals](https://ngdocs.harness.io/article/43pzzhrcbv) and [User Groups](https://newdocs.helpdocs.io/article/dfwuvmy33m)
+harnessApproval_spec.approvers.minimumCount: |-
+    Enter how many of the Users in the User Groups must approve the step.
+    Learn More about [Manual Approvals](https://ngdocs.harness.io/article/43pzzhrcbv) and [User Groups](https://newdocs.helpdocs.io/article/dfwuvmy33m)
+harnessApproval_spec.approvers.disallowPipelineExecutor: |-
+    Enable this option if you don't want the User that initiated the Pipeline execution to approve this step.
+    Learn More about [Manual Approvals](https://ngdocs.harness.io/article/43pzzhrcbv) and [User Groups](https://newdocs.helpdocs.io/article/dfwuvmy33m)
+terraformEdit_name: |-
+    Enter a name for this step. You can use the name in expressions to refer to settings in this step.
+
+    For example, if the name of the step is **apply** and you want to reference its **Timeout** setting, you would use:
+
+    `<+execution.steps.apply.timeout>`
+
+    Learn More about [Terraform Apply](https://ngdocs.harness.io/article/hdclyshiho) or [expressions](https://newdocs.helpdocs.io/article/lml71vhsim)
+terraformEdit_spec.configuration.type: |-
+    - **Inherit from Plan:** apply the plan of a previous [Terraform Plan](https://newdocs.helpdocs.io/article/52n3j0ci72) step by entering that step's Provisioner Identifier Id in **Provisioner Identifier**.
+
+    - **Inline:** configure this Terraform Apply step to use a Terraform script without any Terraform Plan step.
+
+    [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
+terraformEdit_spec.provisionerIdentifier: |-
+    The Id you enter here identifies its provisioning. 
+
+    What Id you enter depends on what you selected in **Configuration Type**:
+
+    - **Inherit from Plan:** enter the Provisioner Identifier Id of a previous [Terraform Plan](https://newdocs.helpdocs.io/article/52n3j0ci72) step. This Terraform Apply step will apply that plan and all its settings. 
+    - **Inline:** enter a unique Id for this Terraform Apply step. This Terraform Apply step will apply its own Terraform script and settings. You can use the Id in subsequent [Terraform Rollback](https://ngdocs.harness.io/article/jgi6d73noy) and [Terraform Destroy](https://ngdocs.harness.io/article/j75xc704c8) steps.
+
+    [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
+k8InfraAllowSimultaneousDeployments: Enable this setting to provision the target infrastructure for this stage. Harness will provision the target infrastructure and then deploy to it using the steps in **Execution**. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)

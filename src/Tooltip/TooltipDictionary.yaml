@@ -169,7 +169,7 @@ region: AWS Region
 imageName: The name of the image that will be pushed to the target container registry.
 gcsBucket: GCS Bucket
 sourcePath: Use regex to upload multiple files
-gcsS3Target: The path to store the cache in, relatively to the bucket. If not provided the cache will be save to [bucket]/
+gcsS3Target: The path to store the artifact in, relatively to the bucket. If not provided the artifact will be save to [bucket]/
 connector: Container Registry to use to download the image use to run commands on
 restoreCacheKey: The key that can be used to restore this cache. You can use the checksum macro to create a key that is based on a file’s checksum. For example, myApp-{ { checksum filePath1 } }
 archiveFormat: Select archive format. Default is Tar
@@ -213,6 +213,10 @@ runTestsPackages: List of source code package prefixes separated by comma. E.g. 
 runTestsTestAnnotations: "List of test annotations used in unit testing. They should be separated by comma. Any method annotated with this will be treated as test method. The defaults are: org.junit.Test, org.junit.jupiter.api.Test, org.testng.annotations.Test"
 runTestsPreCommand: Commands used for setting up the environment before running the tests
 runTestsPostCommand: Commands used for cleaning up the environment after running the tests
+runTestsMavenSetupText2: |
+Please configure the Maven Surefire plugin to attach the Java agent or the forked JVM will not include the Java agent.
+
+Without a Java agent, Harness cannot generate test graphs and make test selections.
 s3Connector: AWS connector to use for uploading the artifact(s) to S3
 gcpConnector: GCP connector to use for saving the cache to GCS
 saveCacheS3Connector: AWS connector to use for saving the cache to S3

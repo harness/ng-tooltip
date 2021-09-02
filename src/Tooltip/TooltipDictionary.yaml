@@ -133,8 +133,8 @@ k8InfraReleaseName: |-
 
     `release-` is used as a prefix because Kubernetes service and pod names must follow RFC-1035 and must consist of lowercase alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character.
 manifestDetails_identifier: Enter a name that identifies this manifest. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
-manifestDetails_gitFetchType: Select a branch or commit ID for the manifest.
-manifestDetails_commitId: Enter the commit ID in the repo where the manifest is located.
+manifestDetails_gitFetchType: Select a branch or commit ID for the manifest. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
+manifestDetails_commitId: Enter the commit ID in the repo where the manifest is located. You can also use a [Git commit tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 manifestDetails_branch: Enter the branch in the repo where the manifest is located, such as `main`.
 imagePath_imagePath: |+
     Enter the name of the artifact you want to deploy, such as `library/nginx`. [Learn More](https://ngdocs.harness.io/article/4ifq51cp0i)
@@ -1775,3 +1775,15 @@ pipelineEvents_types.StageFailed: Select this option to receive notifications wh
 pipelineEvents_types.StageSuccess: Select this option to receive notifications when each Pipeline stage execution is successful. You can select the stages to use. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
 pipelineEvents_types.StageStart: Select this option to receive notifications when each Pipeline stage execution starts. You can select the stages to use. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
 pipelineEvents_types.StepFailed: Select this option to receive notifications when each Pipeline stage execution fails. You can select the stages to use. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+manifestDetails_repoName: Enter the name of the repo where the files are located. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
+manifestDetails_paths: Enter the path to the manifest file or folder in the repo. If the Connector you selected already has the repo name, you simply need to add the path from the root of the repo. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
+manifestDetails_skipResourceVersioning: |-
+    By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters. Harness uses a ConfigMap for release versioning.
+
+    In some cases, you might want to skip versioning.
+
+    When you enable **Skip Resource Versioning**, Harness will not perform versioning of ConfigMaps and Secrets for the deployment.
+
+    If you have enabled **Skip Resource Versioning** for a few deployments and then disable it, Harness will start versioning ConfigMaps and Secrets.
+
+    [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)

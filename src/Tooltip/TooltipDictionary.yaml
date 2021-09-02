@@ -210,7 +210,7 @@ restoreCacheAwsConnector: AWS connector to use for restoring the cache from S3
 runCommand: POSIX shell script executed inside the container. The script is invoked as if it were the container’s entrypoint.
 runTestsArgs: The arguments to be passed to the buildTool. For maven, it will be a goal.
 runTestsBuildTool: Enter the build automation tool. Currently, Harness only supports Maven.
-runTestsLanguage: "The programming language of the source code to buildEnter the programming language of the source code to build. For example: Java."
+runTestsLanguage: Enter the programming language of the source code to build, such as Java.
 runTestsPackages: List of source code package prefixes separated by comma. E.g. com.company., io.company., migrations.
 runTestsTestAnnotations: "List of test annotations used in unit testing. They should be separated by comma. Any method annotated with this will be treated as test method. The defaults are: org.junit.Test, org.junit.jupiter.api.Test, org.testng.annotations.Test"
 runTestsPreCommand: Commands used for setting up the environment before running tests.
@@ -1761,8 +1761,17 @@ summaryOfRulesHeader: |-
     [Learn More](https://ngdocs.harness.io/article/ehmi6kiynl)
 ciRunTests_name: Enter a unique test name.
 ciRunTests_description: Description for the step.
-RunTests_stepName_StepConfig: |-
-    The Run Tests step can be used to run scripts in your CI stages. You can enable Test Intelligence for your build in your CI stages using the Run Tests steps.
-    [Learn More](https://ngdocs.harness.io/article/ota4xj59le)
+RunTests_stepName_StepConfig: The Run Tests step can be used to run tests in your CI stages. When you use Run Tests, you enable Test Intelligence for your CI stage. [Learn More](https://ngdocs.harness.io/article/ota4xj59le)
 ciRunTests_spec.runOnlySelectedTests: This option enables Test Intelligence. If this option is unchecked and set to False, then the Test Intelligence will be disabled and all tests will run. [Learn More](https://ngdocs.harness.io/article/vtu9k1dsfa)
-ciBuildInfra_connectorRef: Select a Harness Connector to Kubernetes cluster. A Kubernetes cluster is used as a build farm. [Learn More](ngdocs.harness.io/article/ia5dwx5ya8)
+ciBuildInfra_connectorRef: Select a Harness Connector for a Kubernetes cluster. A Kubernetes cluster is used as a build farm. [Learn More](https://ngdocs.harness.io/article/ia5dwx5ya8)
+notificationsOverview_name: Enter a name for your Notification Rule. Notification Rules are used to create a notification strategy for your Pipeline. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.AllEvents: Select this option to receive notifications for all Pipeline events. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.PipelineStart: Select this option to receive notifications when the Pipeline execution starts. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.PipelineEnd: Select this option to receive notifications when the Pipeline execution ends. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.PipelineSuccess: Select this option to receive notifications if the Pipeline execution is successful. For CD, Harness considers a deployment successful when the deployed service reaches steady state. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.PipelineFailed: Select this option to receive notifications when the Pipeline execution fails. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.PipelinePaused: Select this option to receive notifications when the Pipeline execution is paused. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.StageFailed: Select this option to receive notifications when the Pipeline execution fails. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.StageSuccess: Select this option to receive notifications when each Pipeline stage execution is successful. You can select the stages to use. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.StageStart: Select this option to receive notifications when each Pipeline stage execution starts. You can select the stages to use. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)
+pipelineEvents_types.StepFailed: Select this option to receive notifications when each Pipeline stage execution fails. You can select the stages to use. [Learn More](https://ngdocs.harness.io/article/4bor7kyimj)

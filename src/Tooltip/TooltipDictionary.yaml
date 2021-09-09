@@ -10,7 +10,10 @@ jiraApprovalIssueKey: |-
     The **Jira Create** or **Jira Update** step you want to reference must be *before* the **Jira Approval** step that references it in the Pipeline and stage. [Learn More](https://ngdocs.harness.io/article/2lhfk506r8)
 ONNtooltipId: Your pipeline name
 specifyYourService: Harness Services represent your microservices/apps logically. You can propagate the same Service to as many stages as you need.
-stageOverviewDeploymentType: Select the platform for your deployment. When you select a platform, its specific specs and settings appear.
+stageOverviewDeploymentType: |-
+    The deployment type is how your Service will be deployed. For example, using Kubernetes.
+
+    Select the platform for your deployment. When you select a platform, its specific settings appear.
 deploymentTypeManifests: Add the configuration files that describe the desired state of your app in terms of Kubernetes API object descriptions. All files in **Manifests** must have the .yaml file extension. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
 deploymentTypeArtifacts: |-
     If the image location is not specified in your Deployment manifest, you can add the image location to Harness as an Artifact. 
@@ -77,8 +80,8 @@ projectsForm_orgIdentifier: Select an org for your project. [Learn more](https:/
 passwordStrengthForm_minNumberOfCharacters: Enter a minimum length for the passwords. [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
 passwordExpirationForm_daysBeforePasswordExpire: After how many days the password must expire? [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
 passwordExpirationForm_daysBeforeUserNotified: How many days before password expiration should the user be notified?  [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
-lockoutPolicyForm_numberOfFailedAttemptsBeforeLockout: After how many failed logins user is locked out?  [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
-lockoutPolicyForm_lockOutPeriod: Enter the period for which user would be locked out.  [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
+lockoutPolicyForm_numberOfFailedAttemptsBeforeLockout: Enter the number of login attempts a user can perform before being locked out. [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
+lockoutPolicyForm_lockOutPeriod: Enter how many hours a user is locked out. [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
 samlProviderForm_displayName: Enter a name for the SAML Provider. [Learn more](https://ngdocs.harness.io/article/mlpksc7s6c-single-sign-on-saml)
 samlProviderForm_groupMembershipAttr: Enter the Group Attribute Name from your SAML Provider. [Learn more](https://ngdocs.harness.io/article/mlpksc7s6c-single-sign-on-saml)
 connectorDetailsStepForm_name: Enter a name for the Connector. This is the name you will use to select this Connector in stage and step settings.
@@ -354,8 +357,8 @@ terraformRollback_spec.provisionerIdentifier: |-
     Enter the same Provisioner Identifier you used in the Terraform Plan and/or Apply steps that provisioned the infrastructure you want to roll back. Harness will roll back the exact infrastructure provisioned in those steps.
     [Learn More](https://ngdocs.harness.io/article/jgi6d73noy)
 shellScriptForm_name: Enter a name for this step.
-shellScriptForm_spec.shell: "Select the shell type of you script. "
-k8BgSwap_name: Enter a name for this step.
+shellScriptForm_spec.shell: Select the shell type of you script. [Learn More](https://ngdocs.harness.io/article/k5lu0u6i1i)
+k8BgSwap_name: Enter a name for this step. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
 k8BG_name: Enter a name for this step.
 k8Apply_name: Enter a name for this step.
 k8DeleteData_name: Enter a name for this step.
@@ -477,13 +480,12 @@ shellScriptForm_spec.source.spec.script: |-
     export BUILD_NO="345"
     export LANG="en-us" 
     ```
-
     You must use quotes around the value because environment variables are Strings.
 
-    You can use Harness [variable expressions](https://ngdocs.harness.io/article/lml71vhsim-harness-variables) in your script and its comments. Harness will attempt to evaluate and render the variable expressions at runtime. Do not use variable expressions that Harness cannot evaluate at this step in the Execution.
+    You can use Harness [variable expressions](https://ngdocs.harness.io/article/lml71vhsim-harness-variables) in your script and its comments. Harness will attempt to evaluate and render the variable expressions at runtime. Do not use variable expressions that Harness cannot evaluate at this point in the Execution.
     [Learn More](https://ngdocs.harness.io/article/k5lu0u6i1i)
 Http_stepName: The HTTP step can run HTTP methods containing URLs, methods, headers, and variables. You can add assertions that use the response from the HTTP method.
-httpWidget_name: Enter a name for this step.
+httpWidget_name: Enter a name for this step. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
 httpWidget_timeout: |-
     Enter a timeout for this step. 
 
@@ -499,17 +501,36 @@ httpWidget_timeout: |-
     The maximum is `53w`.
 
     Timeouts can be set at the Pipeline level also.
-httpWidget_spec.url: Enter the URL for the HTTP call.
-httpWidget_spec.method: Select the [HTTP method](https://restfulapi.net/http-methods/).
-httpWidget_spec.requestBody: Enter the message body (if any) of the HTTP message.
-httpWidget_spec.assertion: The assertion is used to validate the incoming response.
+httpWidget_spec.url: Enter the URL for the HTTP call.  [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+httpWidget_spec.method: Select the [HTTP method](https://restfulapi.net/http-methods/). [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+httpWidget_spec.requestBody: Enter the message body (if any) of the HTTP message. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+httpWidget_spec.assertion: |-
+    The assertion is used to validate the incoming response. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+
+    For example, if you wanted to check the health of an HTTP connection, you could use the assertion `<+httpResponseCode> == 200`.
+
+    The expression `<+httpResponseCode> == 200` will evaluate to `true` if the HTTP call returns a 200 code.
+
+    Expressions can use the following aliases to refer to the HTTP responses, URL, and method:
+
+    - `<+httpResponseCode>`
+    - `<+httpUrl>`
+    - `<+httpMethod>`
+    - `<+httpResponseBody>`
 httpWidget_spec.headers: |-
-    Enter headers for the message, such as the media type for the message. 
+    Enter headers for the message, such as the media type for the message. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
 
     For example, if you are using the GET method, the headers are used to specify the GET response body message type Harness will check for.
 
     You can enter multiple header entries. You can use Harness secrets for token headers, also.
-httpWidget_spec.outputVariables: Add output variables to be used in other steps in your stage.
+
+    For example, in **Key**, enter **Token** .
+
+    In **Value**, enter a secret reference like `<+secrets.getValue("aws-playground_AWS_secret_key")>`.
+httpWidget_spec.outputVariables: |-
+    Create output variables to be used by other steps in the stage. The **Value** setting can contain any HTTP step input, output, or response information.
+
+    You can also use ​JSON and XML functors in the values for the output variable. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
 JiraApproval_stepName: |-
     You can use Jira issues to approve or reject a Pipeline or stage at any point in its execution.
 
@@ -864,7 +885,7 @@ harnessApproval_timeout: |-
     The maximum is `53w`.
 
     Timeouts can be set at the Pipeline level also.
-harnessApproval_spec.approvalMessage: Add the message for the Users in **Approvers**.
+harnessApproval_spec.approvalMessage: Add the message for the Users in **Approvers**. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
 Barrier_stepName: |-
     Barriers allow you to synchronize different stages in your Pipeline, and control the flow of your deployment systematically.
 
@@ -1290,24 +1311,30 @@ K8sApply_stepName_StepConfig: |-
 
     CD stages include an **K8s Apply** step that allows you to deploy any resource you have set up in the **Manifests** section. [Learn More](https://ngdocs.harness.io/article/00el61pzok)
 K8sRollingDeploy_stepName_StepConfig: |-
-    The **K8s Rollout** step preforms a rolling update strategy. 
+    The **K8s Rollout Deploy** step preforms a rolling update strategy. 
 
     It updates Kubernetes deployments with zero downtime by incrementally updating pod instances with new ones. New pods are scheduled on nodes using the available resources. [Learn More](https://ngdocs.harness.io/article/xsla71qg8t)
 K8sCanaryDeploy_stepName_StepConfig: The **K8s Canary Deploy** step defines how many pods are deployed for a Canary test of the configuration files in your Service Definition **Manifests** section. [Learn More](https://ngdocs.harness.io/article/i5p4feil89)
 K8sScale_stepName_StepConfig: |-
     When you deploy a Kubernetes workload using Harness, the number of pods you want is set in your manifests and in the deployment steps.
 
-    With the **Scale** step, you can scale this number of running pods up or down by count or percentage. [Learn More](https://ngdocs.harness.io/article/jxe5z9domw)
-K8sRollingRollback_stepName_StepConfig: If a Harness Kubernetes deployment fails, Harness will rollback to the last successful version of your workload. [Learn More](https://ngdocs.harness.io/article/rt449t1xhy)
+    With the ** K8s Scale** step, you can scale this number of running pods up or down by count or percentage. [Learn More](https://ngdocs.harness.io/article/jxe5z9domw)
+K8sRollingRollback_stepName_StepConfig: |-
+    The **K8s Rollout Rollback** step roll back the workloads deployed by the **K8s Rollout Deploy** step.
+
+    If a Harness Kubernetes deployment fails, Harness will rollback to the last successful version of your workload. [Learn More](https://ngdocs.harness.io/article/rt449t1xhy)
 K8sCanaryDelete_stepName_StepConfig: The **Canary Delete** step is used to clean up the workload deployed by the Canary Deployment step. [Learn More](https://ngdocs.harness.io/article/922mtcvank)
 K8sDelete_stepName_StepConfig: You can remove any deployed Kubernetes resources with the **K8s Delete** step. [Learn More](https://ngdocs.harness.io/article/eaj0xuegln)
 K8sBlueGreenDeploy_stepName_StepConfig: |
-    The **Stage** step is added automatically when you apply the Blue Green strategy. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
+    The **K8s Blue Green Deploy** step is added automatically when you apply the Blue Green strategy. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
 
-    The **Stage** step creates the Kubernetes services and pod sets needed for your new app versions, and the deploys your new app version to the pod set receiving stage traffic.
-K8sBGSwapServices_stepName_StepConfig: In **Swap** step swaps the primary service to the pod set running the new app and the stage service to the pod set running the previous app version. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
+    The **K8s Blue Green Deploy** step creates the Kubernetes services and pod sets needed for your new app versions, and the deploys your new app version to the pod set receiving stage traffic.
+K8sBGSwapServices_stepName_StepConfig: |-
+    The **K8s Blue Green Swap Services** step is added automatically when you apply the Blue Green strategy. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
+
+    The **K8s Blue Green Swap Services** step swaps the primary service to the pod set running the new app and the stage service to the pod set running the previous app version. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
 ShellScript_stepName_StepConfig: |
-    You can run shell scripts in a CD stage using the Shell Script step. [Learn More](https://ngdocs.harness.io/article/k5lu0u6i1i)
+    You can run shell scripts in a CD stage using the **Shell Script** step. [Learn More](https://ngdocs.harness.io/article/k5lu0u6i1i)
 
     With the **Shell Script** step, you can execute scripts in the shell session of the stage in the following ways:
 
@@ -1787,3 +1814,42 @@ manifestDetails_skipResourceVersioning: |-
     If you have enabled **Skip Resource Versioning** for a few deployments and then disable it, Harness will start versioning ConfigMaps and Secrets.
 
     [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
+Http_stepName_StepConfig: You can use the HTTP step to run HTTP methods containing URLs, methods, headers, assertions, and variables. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+HarnessApproval_stepName_StepConfig: |-
+    You can specify Harness User Group(s) to approve or reject a Pipeline at any point in its execution. During deployment, the User Group members use the Harness Manager to approve or reject the Pipeline deployment manually. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
+
+    Approvals are added in between Stages to prevent the Pipeline execution from proceeding without an approval.
+cdEditStage_name: |-
+    Enter a name for this stage. You added a name when you created the stage, but you can edit the name here. [Learn More](https://ngdocs.harness.io/article/2chyf1acil)
+
+    Changing the stage name does not change the stage identifier (ID). The stage identifier is created when you first name the stage and it cannot be changed. [Learn More](https://ngdocs.harness.io/article/li0my8tcz3)
+overviewStageVariables: |-
+    Stage variables are custom variables you can add and reference in your stage and Pipeline. They are available across the Pipeline. You can override their values in subsequent stages. [Learn More](https://ngdocs.harness.io/article/2chyf1acil)
+
+    You can even reference stage variables in the files fetched at runtime.
+
+    For example, you could create a stage variable `name` and then reference it in the Kubernetes values.yaml file used by this stage: `name: <+stage.variables.name>`. When you run this Pipeline, you provide a value for `name` and that value is used for the values.yaml file.
+
+    You reference stage variables **within their stage** using the expression `<+stage.variables.[variable name]>`.
+
+    You reference stage variables **outside their stage** using the expression `<+pipeline.stages.[stage name].variables.[variable name]>`.
+addEditCustomVariableForm_name: |-
+    Enter a name for this stage variable. You reference stage variables within their stage using the expression `<+stage.variables.[name]>`
+
+    You reference stage variables **outside their stage** using the expression `<+pipeline.stages.[stage name].variables.[variable name]>`.  [Learn More](https://ngdocs.harness.io/article/2chyf1acil)
+addEditCustomVariableForm_type: Select the variable type. If you select **Secret**, click **Save** and then create or select a Harness secret for the **Value**. [Learn More](https://ngdocs.harness.io/article/osfw70e59c)
+delegateSetupStepForm_name: Enter a name for the Delegate. The name you enter is added as metadata in the StatefulSet for the Kubernetes Delegate. [Learn More](https://ngdocs.harness.io/article/f9bd10b3nj)
+delegateSetupStepForm_delegateConfigurationId: A Delegate Configuration enables you to run a startup script on the host/container/pod for a Harness Delegate during or after installation. You can create a single Delegate Configuration and apply it to multiple Delegates. [Learn More](https://ngdocs.harness.io/article/h8zacls2rv)
+delegateSetupStepForm_k8sConfigDetails.namespace: |
+    By default, the Delegate resides in a namespace in the target cluster with a service account attached to it. The service account uses a ClusterRole for permission to deploy to all namespaces in the cluster.
+
+    This centralized model is simple and efficient, but it doesn't let you restrict teams to deploying into specific namespaces. Any team member can deploy to any namespace.
+
+    As an alternative, you can use a distributed model that places a Delegate in a specific namespace in the cluster. It limits each Delegate to deploying into its own namespace only. 
+
+    Later, when you set up a Harness Kubernetes Cluster Connector to the cluster, you can use a service account in that namespace with the Cluster Admin role. [Learn More](https://ngdocs.harness.io/article/jud4rz7wl4)
+orgForm_name: |-
+    Enter a name for this organization. 
+
+    Harness Organizations (Orgs) allow you to group Harness Projects that share the same goal. For example, all Projects for a business unit or division. [Learn More](https://ngdocs.harness.io/article/7fibxie636)
+vaultConfigForm_namespace: Enter the Vault [namespace](https://www.vaultproject.io/docs/enterprise/namespaces) if you use Vault namespaces to support tenant isolation.

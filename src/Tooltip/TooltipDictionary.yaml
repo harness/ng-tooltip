@@ -67,11 +67,9 @@ jfrogArt_name: |-
     The [Upload Artifacts to JFrog Artifactory](https://ngdocs.harness.io/article/gjoggc66fy) step creates a Docker image from a Dockerfile and pushes it to a JFrog Artifactory Docker repository.
 conditionalExecution: |-
     Conditional Execution uses JEXL operators and expressions. [Learn More](https://commons.apache.org/proper/commons-jexl/reference/syntax.html)
-
      
     Examples:
 
-     
     `<+steps.mystep.output.status> == “success”`
     `<+environment.name> != “QA”`
 projectsForm_name: Enter a name for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4-create-an-organization)
@@ -1853,3 +1851,89 @@ orgForm_name: |-
 
     Harness Organizations (Orgs) allow you to group Harness Projects that share the same goal. For example, all Projects for a business unit or division. [Learn More](https://ngdocs.harness.io/article/7fibxie636)
 vaultConfigForm_namespace: Enter the Vault [namespace](https://www.vaultproject.io/docs/enterprise/namespaces) if you use Vault namespaces to support tenant isolation.
+gitSyncRepoForm_name: |-
+    Enter a name for the repo. 
+
+    It doesn't have to be the same as the Git repo name. The name you enter here will appear in Harness only. It'll identify the Project repo. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
+
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+gitSyncRepoForm_repo: |-
+    Once you add a Connector above you should see the repo URL in **Repository URL**.
+
+    Click **Test Connection**. Once Harness verifies the connection, you will see `Connection Successful`. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj) 
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+gitSyncRepoForm_rootfolder: |-
+    The Harness Folder is the default folder in the repo where you are syncing your Project.
+
+    Enter the name of the folder in your repo where you want to sync. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+gitSyncRepoForm_branch: |-
+    Select the branch that you want to use, such as **main**. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj) 
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+gitSyncRepoTab_repo: |-
+    This is the URL of the repo where Harness syncs this Project.
+
+    Click **Test Connection**. Harness verifies the connection. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+gitSyncRepoTab_rootFolder: |-
+    The Harness Folder is the default folder in the repo where you are syncing your Project.
+
+    Enter the name of the folder in your repo where you want to sync. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+gitSyncRepoTab_isDefault: |-
+    **What is the default folder?** When a Pipeline in one repo needs to access a Connector/Secret/etc in another repo at runtime, the Pipeline will always use the Connector/Secret/etc in their **default folder**. Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+connectorDetailsStepFormGithub_repo: |-
+    Enter a name for the repo.
+
+    It doesn't have to be the same as the Git repo name. The name you enter here will appear in Harness only. It'll identify the Project repo for other users. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_name: |-
+    Enter a name for the Connector.
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_repoIdentifier: |-
+    Enter the name of the repo to use. 
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_rootFolder: |-
+    The Harness Folder is the default folder in the repo where you are syncing your Project.
+
+    Enter the name of the folder in your repo where you want to sync. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_filePath: |-
+    Enter a name for the YAML file, such as `Example.yaml`. Harness will generate one automatically from the Pipeline name, but you can add your own. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x) 
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_commitMsg: |-
+    Enter a message for the commit that adds this Connector. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x) 
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_createPr: |-
+    You can start a pull request for adding this Connector. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x) 
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+saveToGitForm_branch: |-
+    Enter a branch name to add this Connector to a branch. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x)
+
+    New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
+conditionalExecutionDeployStage: Conditional Execution applies to all steps that do not have their own Conditional Execution. A step's Conditional Execution overrides its stage's Conditional Execution. [Learn More](https://ngdocs.harness.io/article/i36ibenkq2)
+failureStrategyDeployStage: |-
+    Define the failure strategy for this stage. [Learn More](https://ngdocs.harness.io/article/htrur23poj)
+
+    You can apply failure strategies to the stage and its steps and step groups.
+
+    Failure strategies follow this order:
+
+    - **Step-level:** this failure strategy overrides (or enhances) the stage-level failure strategy.
+    - **Step Group-level:** you can set up a failure strategy for all steps in the group. Individual steps in the group will not have a failure strategy. This strategy also overrides the stage-level strategy.
+    - **Stage-level:** the failure strategy for all steps and step groups in the stage. The stage-level strategy can be overridden by step and step group failure strategies, if present.

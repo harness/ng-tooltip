@@ -126,11 +126,11 @@ k8InfraNamespace: |-
 k8InfraReleaseName: |-
     During deployment Harness creates a ConfigMap listing the resources of the release and uses the **Release name** for tracking them. 
 
-    The **Release name** is a combination of `release-` and a unique string created using the Harness expression `<+INFRA_KEY>`. 
+    The **Release name** is a combination of `release-` and a unique string created using the Harness expression `<+INFRA\_KEY>`. 
 
     For example, in a Kubernetes deployment you can see `harness.io/release-name=release-2f9eadcc06e2c2225265ab3cbb1160bc5eacfd4f`.
 
-    The release name must be unique across the cluster. `release-<+INFRA_KEY>` ensures a unique name.
+    The release name must be unique across the cluster. `release-<+INFRA\_KEY>` ensures a unique name.
 
     `release-` is used as a prefix because Kubernetes service and pod names must follow RFC-1035 and must consist of lowercase alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character.
 manifestDetails_identifier: Enter a name that identifies this manifest. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
@@ -265,11 +265,11 @@ connectorDetailsStepFormArtifactory_name: Enter a name for this Connector. You w
 stepArtifactoryAuthForm_artifactoryServerUrl: |-
     Enter in your base URL followed by your module name.
 
-    For most artifacts, use `https://mycompany.jfrog.io/module_name/`.
+    For most artifacts, use `https://mycompany.jfrog.io/module\_name/`.
 
     For example: `https://harness.jfrog.io/artifactory/`
 
-    In some cases, you can use `https://server_name/artifactory/module_name`.
+    In some cases, you can use `https://server\_name/artifactory/module\_name`.
 
     The URL really depends on how you have set up Artifactory, and whether it is local, virtual, remote, or behind a proxy.
 
@@ -472,10 +472,10 @@ shellScriptForm_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 shellScriptForm_spec.source.spec.script: |-
-    Enter your script. For example, here is a script that exports the variable names `BUILD_NO` and `LANG`:
+    Enter your script. For example, here is a script that exports the variable names `BUILD\_NO` and `LANG`:
 
     ```
-    export BUILD_NO="345"
+    export BUILD\_NO="345"
     export LANG="en-us" 
     ```
     You must use quotes around the value because environment variables are Strings.
@@ -524,7 +524,7 @@ httpWidget_spec.headers: |-
 
     For example, in **Key**, enter **Token** .
 
-    In **Value**, enter a secret reference like `<+secrets.getValue("aws-playground_AWS_secret_key")>`.
+    In **Value**, enter a secret reference like `<+secrets.getValue("aws-playground\_AWS\_secret\_key")>`.
 httpWidget_spec.outputVariables: |-
     Create output variables to be used by other steps in the stage. The **Value** setting can contain any HTTP step input, output, or response information.
 
@@ -1035,7 +1035,7 @@ terraformPlanEditView-tfPlan-INFRASTRUCTURE_spec.configuration.backendConfig.spe
 terraformPlanEditView-tfPlan-INFRASTRUCTURE_spec.configuration.targets: |-
     You can use the **Targets** setting to target one or more specific modules in your Terraform script, just like using the `terraform plan -target` command. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
 
-    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3_bucket"`.
+    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3\_bucket"`.
 
     If you have multiple modules in your script and you don't select one in Targets, all modules are used.
 
@@ -1046,8 +1046,8 @@ terraformPlanEditView-tfPlan-INFRASTRUCTURE_spec.configuration.environmentVariab
     For example:
 
     ```
-    TF_LOG_PATH=./terraform.log
-    TF_VAR_alist='[1,2,3]'
+    TF\_LOG\_PATH=./terraform.log
+    TF\_VAR\_alist='[1,2,3]'
     ```
 
     You can use [Harness secrets](https://ngdocs.harness.io/article/osfw70e59c) for values.
@@ -1083,7 +1083,7 @@ terraformEdit-TerraformApply-INFRASTRUCTURE_spec.configuration.spec.backendConfi
 terraformEdit-TerraformApply-INFRASTRUCTURE_spec.configuration.spec.targets: |-
     You can use the **Targets** setting to target one or more specific modules in your Terraform script, just like using the `terraform plan -target` command. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
 
-    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3_bucket"`.
+    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3\_bucket"`.
 
     If you have multiple modules in your script and you don't select one in Targets, all modules are used.
 
@@ -1094,8 +1094,8 @@ terraformEdit-TerraformApply-INFRASTRUCTURE_spec.configuration.spec.environmentV
     For example:
 
     ```
-    TF_LOG_PATH=./terraform.log
-    TF_VAR_alist='[1,2,3]'
+    TF\_LOG\_PATH=./terraform.log
+    TF\_VAR\_alist='[1,2,3]'
     ```
 
     You can use [Harness secrets](https://ngdocs.harness.io/article/osfw70e59c) for values.
@@ -1126,7 +1126,7 @@ terraformEdit-TerraformDestroy-INFRASTRUCTURE_spec.configuration.spec.backendCon
 terraformEdit-TerraformDestroy-INFRASTRUCTURE_spec.configuration.spec.targets: |-
     You can use the **Targets** setting to target one or more specific modules in your Terraform script, just like using the `terraform plan -target` command. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
 
-    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3_bucket"`.
+    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3\_bucket"`.
 
     If you have multiple modules in your script and you don't select one in Targets, all modules are used.
 
@@ -1137,8 +1137,8 @@ terraformEdit-TerraformDestroy-INFRASTRUCTURE_spec.configuration.spec.environmen
     For example:
 
     ```
-    TF_LOG_PATH=./terraform.log
-    TF_VAR_alist='[1,2,3]'
+    TF\_LOG\_PATH=./terraform.log
+    TF\_VAR\_alist='[1,2,3]'
     ```
 
     You can use [Harness secrets](https://ngdocs.harness.io/article/osfw70e59c) for values.
@@ -1175,7 +1175,7 @@ terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.backendConfig.spec.con
 terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.targets: |-
     You can use the **Targets** setting to target one or more specific modules in your Terraform script, just like using the `terraform plan -target` command. [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
 
-    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3_bucket"`.
+    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3\_bucket"`.
 
     If you have multiple modules in your script and you don't select one in Targets, all modules are used.
 
@@ -1186,8 +1186,8 @@ terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.environmentVariables: 
     For example:
 
     ```
-    TF_LOG_PATH=./terraform.log
-    TF_VAR_alist='[1,2,3]'
+    TF\_LOG\_PATH=./terraform.log
+    TF\_VAR\_alist='[1,2,3]'
     ```
 
     You can use [Harness secrets](https://ngdocs.harness.io/article/osfw70e59c) for values.
@@ -1221,7 +1221,7 @@ terraformEdit-TerraformApply-EXECUTION_spec.configuration.spec.backendConfig.spe
 terraformEdit-TerraformApply-EXECUTION_spec.configuration.spec.targets: |-
     You can use the **Targets** setting to target one or more specific modules in your Terraform script, just like using the `terraform plan -target` command. [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
 
-    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3_bucket"`.
+    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3\_bucket"`.
 
     If you have multiple modules in your script and you don't select one in Targets, all modules are used.
 
@@ -1232,8 +1232,8 @@ terraformEdit-TerraformApply-EXECUTION_spec.configuration.spec.environmentVariab
     For example:
 
     ```
-    TF_LOG_PATH=./terraform.log
-    TF_VAR_alist='[1,2,3]'
+    TF\_LOG\_PATH=./terraform.log
+    TF\_VAR\_alist='[1,2,3]'
     ```
 
     You can use [Harness secrets](https://ngdocs.harness.io/article/osfw70e59c) for values.
@@ -1265,7 +1265,7 @@ terraformEdit-TerraformDestroy-EXECUTION_spec.configuration.spec.backendConfig.s
 terraformEdit-TerraformDestroy-EXECUTION_spec.configuration.spec.targets: |-
     You can use the **Targets** setting to target one or more specific modules in your Terraform script, just like using the `terraform plan -target` command. See the same **Targets** setting in [Terraform Plan](https://ngdocs.harness.io/article/52n3j0ci72) for details.
 
-    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3_bucket"`.
+    You simply identify the module using the standard format `module.name`, like you would using `terraform plan -target="module.s3\_bucket"`.
 
     If you have multiple modules in your script and you don't select one in Targets, all modules are used.
 
@@ -1276,8 +1276,8 @@ terraformEdit-TerraformDestroy-EXECUTION_spec.configuration.spec.environmentVari
     For example:
 
     ```
-    TF_LOG_PATH=./terraform.log
-    TF_VAR_alist='[1,2,3]'
+    TF\_LOG\_PATH=./terraform.log
+    TF\_VAR\_alist='[1,2,3]'
     ```
 
     You can use [Harness secrets](https://ngdocs.harness.io/article/osfw70e59c) for values.
@@ -1383,7 +1383,7 @@ cvData_spec.monitoredServiceRef: |-
 
     Harness automatically creates a Monitored Service using a concatenation of the Service and Environment names. 
 
-    For example, a Service named `todolist` and an Environment named `dev` will result in a Monitored Service named `todolist_dev`.
+    For example, a Service named `todolist` and an Environment named `dev` will result in a Monitored Service named `todolist\_dev`.
 
     If the stage Service or Environment settings are [Runtime Inputs](https://ngdocs.harness.io/article/f6yobn7iq0), the Monitored Service and Health Sources settings will show up in the Runtime Input settings when you run the Pipeline.
 

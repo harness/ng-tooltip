@@ -72,9 +72,9 @@ conditionalExecution: |-
 
     `<+steps.mystep.output.status> == “success”`
     `<+environment.name> != “QA”`
-projectsForm_name: Enter a name for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4-create-an-organization)
-projectsForm_color: Select a color for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4-create-an-organization)
-projectsForm_orgIdentifier: Select an org for your project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4-create-an-organization)
+projectsForm_name: Enter a name for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4)
+projectsForm_color: Select a color for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4)
+projectsForm_orgIdentifier: Select an org for your project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4)
 passwordStrengthForm_minNumberOfCharacters: Enter a minimum length for the passwords. [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
 passwordExpirationForm_daysBeforePasswordExpire: After how many days the password must expire? [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
 passwordExpirationForm_daysBeforeUserNotified: How many days before password expiration should the user be notified?  [Learn more](https://ngdocs.harness.io/article/gdob5gvyco-authentication-overview)
@@ -108,7 +108,14 @@ vaultConfigForm_renewalInterv: Enter how often Harness Delegate should reload th
 vaultConfigForm_readOnly: Select to make secrets within this vault Read-Only. [Learn More](https://ngdocs.harness.io/article/s65mzbyags)
 vaultConfigForm_default: Make this your default secrets manager.
 stepGithubAuthForm_enableAPIAccess: Select this option if you are using this GitHub Connector for a Harness [Trigger](https://ngdocs.harness.io/article/hndnde8usz-triggering-pipelines), [Harness Git Experience](https://ngdocs.harness.io/article/utikdyxgfz-harness-git-experience-overview), or authenticating using a [GitHub App](https://ngdocs.harness.io/article/nze5evmqu1-git-hub-app-support).
-deployService_name: "Enter a name for this Service. You can propagate this Service in subsequent stages by selecting its name in that stage's Service settings. "
+deployService_name: |-
+    Enter a name for this Service. 
+
+    A Service represents your microservices, Serverless functions, and other workloads logically. A Service is a logical entity to be deployed, monitored, or changed independently. [Learn More](https://ngdocs.harness.io/article/hv2758ro4e)
+
+    When a Service is added to the stage in a Pipeline, you define its Service Definition. Service Definitions represent the real artifacts, manifests, and variables of a Service. They are the actual files and variable values. 
+
+    You can also propagate and override a Service in subsequent stages by selecting its name in that stage's **Service** settings. [Learn More](https://ngdocs.harness.io/article/t57uzu1i41)
 specifyYourEnvironment: |-
     Select or create a new Environment. You can select this Environment in subsequent stages.
 
@@ -1937,3 +1944,27 @@ failureStrategyDeployStage: |-
     - **Step-level:** this failure strategy overrides (or enhances) the stage-level failure strategy.
     - **Step Group-level:** you can set up a failure strategy for all steps in the group. Individual steps in the group will not have a failure strategy. This strategy also overrides the stage-level strategy.
     - **Stage-level:** the failure strategy for all steps and step groups in the stage. The stage-level strategy can be overridden by step and step group failure strategies, if present.
+overlayInputSet_name: Overlays are groups of Input Sets. Overlays enable you to provide several Input Sets when executing a Pipeline. [Learn More](https://ngdocs.harness.io/article/3fqwa8et3d)
+inputSetForm_name: |-
+    An Input Set includes all the runtime inputs for the Pipeline. 
+
+    You can create multiple Input Sets, each with a different set of values for the Pipeline's runtime inputs.
+
+    When you run the Pipeline you can select an Input Set to automatically populate the runtime inputs. [Learn More](https://ngdocs.harness.io/article/3fqwa8et3d)
+userRoleAssignementForm_user: |-
+    Enter the email address(es) that the User will use to log into Harness.
+
+    If you have Roles and Resource Groups defined, select the Roles and Resource Groups for this user.  [Learn More](https://ngdocs.harness.io/article/hyoe7qcaz6)
+userGroupForm_name: |-
+    Enter a name for this User Group.
+
+    Harness User Groups help you manage User access. [Learn More](https://ngdocs.harness.io/article/dfwuvmy33m)
+userGroupForm_userList: |-
+    Select the Users for this User Group. 
+
+    Each User in a User Group inherits the roles assigned to that group. [Learn More](https://ngdocs.harness.io/article/dfwuvmy33m)
+serviceAccountForm_name: Admin Users of an account can create a Service Account with specific Role Bindings. [Learn More](https://ngdocs.harness.io/article/e5p4hdq6bd)
+resourceGroupModalForm_name: A Resource Group is a set of Harness resources that a User or User Group can access. [Learn More](https://ngdocs.harness.io/article/yp4xj36xro)
+createDashboardForm_folderId: Select the dashboard folder for this dashboard. [Learn More](https://ngdocs.harness.io/article/ardf4nbvcy)
+createDashboardForm_name: Enter a name for this dashboard. [Learn More](https://ngdocs.harness.io/article/ardf4nbvcy)
+createDashboardForm_description: Tag this dashboard so you can locate it easily and group it with other dashboards and Harness entities. [Learn More](https://ngdocs.harness.io/article/ardf4nbvcy)

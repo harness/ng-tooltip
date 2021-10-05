@@ -1537,14 +1537,16 @@ githubURLType: |-
     In either case, when you use the Connector later in Harness, you will specify which repo to use.
 
     [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
-githubConnectionType: |-
-    You can select **HTTPS** or **SSH** for the connection. 
+githubConnectionType:
+    content: |-
+        You can select **HTTP** or **SSH** for the connection. 
 
-    You will need to provide the protocol-relevant URL in **URL**.
+        You will need to provide the protocol-relevant URL in **URL**.
 
-    If you use Two-Factor Authentication for your Git repo, you connect over HTTPS or SSH. HTTPS is required a personal access token.
+        If you use Two-Factor Authentication for your Git repo, you connect over HTTPS or SSH. HTTPS is required a personal access token.
 
-    [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
+        [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
+    width: "400"
 githubDetailsStepForm_url: |-
     The GitHub URL is the URL for a Git org or repo. Ensure that it matches the **Connection Type** option you selected.
 
@@ -2131,4 +2133,286 @@ mapSplunk_savedSearchQuery: Select a query from the list which is an optional st
 mapSplunk_serviceInstance: Once the records are fetched, click the plus icon in Identify Service Instance to select the path for service instance.
 mapPrometheus_serviceInstance:
     content: Click Service Instance Identifier to retrieve host specific metrics.
+    width: "400"
+wizardForm_webhook_name:
+    content: Enter a name for the Trigger. [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+webhookTrigger_description:
+    content: Enter a description for the Trigger. [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+webhookTrigger_tags:
+    content: |-
+        Add tags for the Trigger. 
+
+        [Learn More about Triggers](https://ngdocs.harness.io/article/hndnde8usz)
+
+        [Learn More about Tags](https://ngdocs.harness.io/article/i8t053o0sq)
+    width: "400"
+wizardForm_webhook_sourceRepo:
+    content: Select your Git provider. This setting is populated with the Git provider you selected automatically. [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+wizardForm_webhook_event:
+    content: |-
+        Select the Git event type for the Webhook.
+
+        If the event type you select results in the **Actions** settings appearing, select the actions for the Webhook or select **Any Actions**.
+         [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+wizardForm_webhook_anyAction:
+    content: |
+        Select **Any Actions** to have any of the actions in the event type's payload object initiate the Trigger. For example, `opened`, `edited`, `deleted`.
+
+        [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+wizardForm_webhook_autoAbortPreviousExecutions:
+    content: |-
+        Use this option if you want to override active Pipeline executions whenever the branch is updated.
+
+        If you select this option, when the branch you specified in the **Connector** is updated, then any active Pipeline executions using the branch and this Trigger are cancelled.
+
+        The updated branch will initiate a new Trigger execution. [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+wizardForm_webhook_sourceBranchOperator:
+    content: |-
+        Select the operator for matching the value in **Matches Value**.
+
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty.
+
+        [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+
+        **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
+    width: "400"
+wizardForm_webhook_sourceBranchValue:
+    content: |-
+        Enter a value for the Source Branch condition. This is the source branch of the Git merge.
+
+        For example: Source Branch starts with `new-`
+
+        You can enter multiple values separated by commas and use wildcards.
+
+        [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+    width: "400"
+wizardForm_webhook_targetBranchOperator:
+    content: |-
+        Select the operator for matching the value in **Matches Value**.
+
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty.
+
+        [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+
+        **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
+    width: "400"
+wizardForm_webhook_targetBranchValue:
+    content: |-
+        Enter a value for the Target Branch condition. This is the target branch of the Git merge.
+
+        For example: Target Branch starts with `new-`
+
+        You can enter multiple values separated by commas and use wildcards.
+
+        [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+    width: "400"
+wizardForm_webhook_changedFilesOperator:
+    content: |-
+        Select the operator for matching the value in **Matches Value**.
+
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty.
+
+        [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+
+        **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
+    width: "400"
+wizardForm_webhook_changedFilesValue:
+    content: |-
+        Enter a value for the Changed Files condition. These are the changed files in the Git merge.
+
+        You can enter multiple values separated by commas and use wildcards.
+
+        [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "400"
+wizardForm_webhook_jexlCondition:
+    content: |-
+        You can refer to payload data and headers using [JEXL expressions](https://commons.apache.org/proper/commons-jexl/reference/syntax.html). That includes all constants, methods, and operators in [JexlOperator](https://commons.apache.org/proper/commons-jexl/apidocs/org/apache/commons/jexl3/JexlOperator.html).
+
+        For example:
+
+        - `<+trigger.payload.pull_request.diff_url>.contains("triggerNgDemo")`
+        - `<+trigger.payload.pull_request.diff_url>.contains("triggerNgDemo") ||<+trigger.payload.repository.owner.name> == "wings-software"`
+
+        [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+    width: "650"
+wizardForm_webhook_headerConditions.0.key:
+    content: |-
+        Enter the header attribute for comparison.
+
+        The header expression format is `<+trigger.header['key-name']>`. 
+
+        For example `<+trigger.header['X-GitHub-Event']>`.
+
+        <img src="https://files.helpdocs.io/i5nl071jo5/articles/hndnde8usz/1624919275031/clean-shot-2021-06-28-at-15-27-08.png" width="95%" height="95%">
+
+        [Learn More](https://ngdocs.harness.io/article/hndnde8usz)
+    width: "650"
+wizardForm_webhook_headerConditions.0.operator:
+    content: |-
+        Select the operator for matching the value in **Matches Value**. 
+
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty. [Learn More](https://ngdocs.harness.io/article/rset0jry8q) 
+
+        **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
+    width: "400"
+wizardForm_webhook_headerConditions.0.value:
+    content: |-
+        Enter a value for the header condition comparison.
+
+        When Harness evaluates the header key you enter, the comparison is case insensitive.
+
+        You can enter multiple values separated by commas and use wildcards. [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+    width: "400"
+wizardForm_webhook_payloadConditions.0.key:
+    content: |-
+        Payload conditions are based on the values of the JSON payload. [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+
+        Enter the payload attribute for comparison.
+
+        Harness treats the JSON payload as a data model and parses the payload and listens for events on a JSON payload key.
+
+        To reference payload values, you use `<+eventPayload.` followed by the path to the key name. For example, `<+eventPayload.repository.name>`.
+
+        <img src="https://files.helpdocs.io/i5nl071jo5/articles/hndnde8usz/1624919275031/clean-shot-2021-06-28-at-15-27-08.png" width="95%" height="95%">
+    width: "650"
+wizardForm_webhook_payloadConditions.0.operator:
+    content: |-
+        Select the operator for matching the value in **Matches Value**. 
+
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty. [Learn More](https://ngdocs.harness.io/article/rset0jry8q) 
+
+        **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
+    width: "400"
+wizardForm_webhook_payloadConditions.0.value:
+    content: |-
+        Enter a value for the payload condition comparison. [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
+
+        For example:
+
+        <img src="https://files.helpdocs.io/i5nl071jo5/articles/rset0jry8q/1613777562060/image.png" width="95%" height="95%">
+    width: "650"
+k8sDirectInfraConnector:
+    content: |-
+        Select or create the Connector that connects Harness to your target cluster. [Learn More](https://ngdocs.harness.io/article/0ud2ut4vt2)
+
+        Here's a [video](https://youtu.be/wUC23lmqfnY) that walks through setting up a Kubernetes Cluster Connector.
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.spec.namespace":
+    content: |-
+        Enter the target namespace in the target cluster. 
+
+        The namespace must already exist during deployment. Harness will not create a new namespace using the one you entered here. [Learn More](https://ngdocs.harness.io/article/0ud2ut4vt2)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[0].step.spec.provisionerIdentifier":
+    content: |-
+        Enter a unique value in Provisioner Identifier.
+
+        The Provisioner Identifier identifies the provisioning done in this step. You use the Provisioner Identifier in additional steps to refer to the provisioning done in this step. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
+
+        The most common use of Provisioner Identifier is between the Terraform Plan and Terraform Apply steps. To have the Terraform Apply step apply the provisioning from this Terraform Plan step, you use the same Provisioner Identifier in both steps.
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[0].step.spec.configuration.secretManagerRef":
+    content: |-
+        A Terraform plan is a sensitive file that could be misused to alter resources if someone has access to it. Harness avoids this issue by never passing the Terraform plan file as plain text.
+
+        Select a [Secrets Manager](https://ngdocs.harness.io/article/hngrlb7rd6) to use for encrypting/decrypting and saving the Terraform plan file.
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[0].step.spec.configuration.configFiles.store.spec.connectorRef":
+    content: |-
+        Select the Connector for your Terraform plan repo. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
+
+        When you run the Pipeline, Harness will fetch the script from the repo.
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[0].step.spec.configuration.configFiles.store.spec.branch":
+    content: Select the branch for your Terraform plan. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[0].step.spec.configuration.configFiles.store.spec.folderPath":
+    content: Enter the path from the root of the repo to the folder containing the script. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[1].step.spec.approvalMessage":
+    content: Add the message for the Users in Approvers. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
+    width: "400"
+harnessApprovalRuntime_userGroups:
+    content: Select the Harness User Groups that will approve the step. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[1].step.spec.approvers.minimumCount":
+    content: Enter how many of the Users in the User Groups must approve the step. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[2].step.spec.provisionerIdentifier":
+    content: When provisioning target infrastructure, enter the same Provisioner Identifier you entered in the Terraform Plan step. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.provisioner.steps[3].step.spec.provisionerIdentifier":
+    content: |-
+        The Provisioner Identifier uniquely identifies the provisioning done by specific Terraform steps.
+
+        When provisioning target infrastructure, enter the same Provisioner Identifier used but the Terraform Apply step.
+
+        The Terraform Delete step will delete the infrastructure provisioned by the Terraform Apply step. [Learn More](https://ngdocs.harness.io/article/uznls2lvod)
+    width: "400"
+wizardForm_webhook_spec.provisionerIdentifier:
+    content: |-
+        Enter the same Provisioner Identifier you used in the Terraform Plan and/or Apply steps that provisioned the infrastructure you want to roll back. Harness will roll back the exact infrastructure provisioned in those steps.
+        [Learn More](https://ngdocs.harness.io/article/jgi6d73noy)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[0].parallel[0].step.spec.url":
+    content: Enter the URL for the HTTP call.  [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[0].parallel[0].step.spec.requestBody":
+    content: Enter the message body (if any) of the HTTP message. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
+    width: "400"
+wizardForm_webhook_spec.workload:
+    content: |-
+        Enter the name of the resource to scale in the format `[namespace/]Kind/Name`, with `namespace` optional. For example: 
+
+        ```
+        default/Deployment/harness-example
+        ```
+
+        You can scale a Deployment, DaemonSet, or StatefulSet.
+
+        You can only enter one resource in **Workload**. To scale another resource, add another **K8s Scale** step. 
+
+        [Learn More](https://ngdocs.harness.io/article/jxe5z9domw)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[0].step.spec.provisionerIdentifier":
+    content: Enter the same **Provisioner Identifier** you used in the **Terraform Plan** or **Terraform Apply** step that planned/provisioned the resources you want to destroy. [Learn More](https://ngdocs.harness.io/article/j75xc704c8)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[2].step.spec.provisionerIdentifier":
+    content: |-
+        The **Provisioner Identifier** identifies the provisioning applied in this step. 
+
+        - If you selected **Inherit from Plan** in **Configuration Type**, enter the Id used by the **Terraform Plan** step for the plan you want to apply.
+
+        - If you selected **Inline** in **Configuration Type**, create a new Id.
+
+        [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[2].step.spec.configuration.spec.configFiles.store.spec.connectorRef":
+    content: Select or create a Connector for your Git repo. [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[2].step.spec.configuration.spec.configFiles.store.spec.branch":
+    content: Enter the name of the branch to use.
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[2].step.spec.configuration.spec.configFiles.store.spec.folderPath":
+    content: Enter the path from the root of the repo to the folder containing the script. [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[3].step.spec.provisionerIdentifier":
+    content: |-
+        Enter a unique string to identify the provisioning configured in this step. 
+
+        You will use this **Provisioner Identifier** in additional steps to refer to the provisioning set up in this step.
+
+        The most common use of **Provisioner Identifier** is between the **Terraform Plan** and **Terraform Apply** steps. [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
+    width: "400"
+"wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[3].step.spec.configuration.secretManagerRef":
+    content: |-
+        A Terraform plan is a sensitive file that could be misused to alter resources if someone has access to it. Harness avoids this issue by never passing the Terraform plan file as plain text.
+
+        Select a [Secrets Manager](https://ngdocs.harness.io/article/hngrlb7rd6) to use for encrypting/decrypting and saving the Terraform plan file. [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
     width: "400"

@@ -3092,3 +3092,7 @@ artifactConnForm_connectorId:
 
         CD Pipelines typically pull from registries only. CI Pipelines typically pull and push with registries.
     width: "400"
+poolId:
+    content: |
+        Enter the pool identifier that you created in the **drone_pool.yml** file. [Learn More](https://ngdocs.harness.io/article/z56wmnris8-set-up-an-aws-vm-build-infrastructure#configure_the_drone_pool_yml_file_on_your_aws_vm.)
+    width: "400"

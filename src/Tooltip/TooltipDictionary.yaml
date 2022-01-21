@@ -3116,3 +3116,9 @@ serviceNowApprovalTicketNumber:
 servicenowApprovalapprovalCriteria:
     content: The Approval Criteria in the step determines if the Pipeline or stage is approved or rejected. [Learn More](https://ngdocs.harness.io/article/h1so82u9ub-service-now-approvals)
     width: "400"
+copyGroupOrganization:
+    content: Select the organization you want to copy this user-group to.
+    width: "400"
+copyToProjects:
+    content: Enable this checkbox to select projects in the organization where you want to copy this user-group to
+    width: "400"

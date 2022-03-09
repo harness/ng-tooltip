@@ -3406,3 +3406,13 @@ pluginStep_timeout:
     content: Timeout for the step. Once the timeout is reached, the step fails.
     width: "400"
 artifactory_file_path: Enter the full artifact file path. [Learn More](https://ngdocs.harness.io/article/euueiiai4m-artifactory-connector-settings-reference#artifactory_with_terraform_scripts_and_variable_definitions_tfvars_files)
+sourceCodeManagerForm_name:
+    content: Enter a name for your SCM. [Learn More](https://ngdocs.harness.io/article/p92awqts2x-add-source-code-managers#step_2_add_the_scm)
+    width: "400"
+sourceCodeManagerForm_username:
+    content: Enter your SCM account username. [Learn More](https://ngdocs.harness.io/article/p92awqts2x-add-source-code-managers#step_2_add_the_scm)
+    width: "400"
+sourceCodeManagerForm_accessToken:
+    content: A Harness [Encrypted Text secret](https://ngdocs.harness.io/article/osfw70e59c) for the PAT of your SCM user account. [Learn More](https://ngdocs.harness.io/article/kqik8km5eb-source-code-manager-settings)
+    width: "400"
+

@@ -156,9 +156,6 @@ setContainerResources: |
     Resources limits allow setting maximum values for the resources the container is allowed to use at runtime.
     Use **Limit Memory** to limit the memory that the container can use. Limits for memory are measured in bytes. You can express memory as a plain integer or as a fixed-point number using one of these suffixes: G, M. You can also use the power-of-two equivalents: Gi, Mi.
     Use **Limit CPU** to limit the number of cores that the container can use. Limits for CPU resources are measured in cpu units. Fractional requests are allowed. The expression 0.1 is equivalent to the expression 100m, which can be read as **one hundred millicpu**.
-# timeout:
-#     content: Timeout for the step. Once the timeout is reached, the step fails.
-#     width: "400"
 image:
     content: |-
         The FQN (fully-qualified name) of the Docker image to use when running build commands. For example: `us.gcr.io/playground/quickstart-image`.
@@ -166,14 +163,9 @@ image:
         The image name should include the tag and will default to the latest tag if unspecified. You can use any Docker image from any Docker registry, including Docker images from private registries. [Learn More](https://ngdocs.harness.io/article/1i1ttvftm4)
     width: "400"
 privileged: Enable this option to run the container with escalated privileges. This is the equivalent of running a container with the Docker --privileged flag.
-# tags: Specify one or more tags for the Docker image
 optimize: Enables redo snapshot mode
 dockerfile: If not provided assumed to be in the root folder of the codebase
 context: Context represents a directory containing a Dockerfile which kaniko will use to build your image. For example, a COPY command in your Dockerfile should refer to a file in the build context.
-# labels:
-#     content: Use Labels to add metadata to the Docker image.
-#     width: "400"
-# buildArgs: Build-time variables
 target: Build the specified stage as defined inside the Dockerfile
 region:
     content: |-
@@ -196,9 +188,6 @@ sourcePath: |-
     You can use regex to upload multiple files.
     Harness will automatically create the compressed file.
 gcsS3Target: The path to store the cache in, relatively to the bucket. If not provided the cache will be save to [bucket]/
-# connector: |-
-#     The Harness Connector for a container registry. This is the container registry for the image Harness will use run build commands on, such as DockerHub.
-#     [Learn More](https://ngdocs.harness.io/article/u9bsd77g5a)
 restoreCacheKey:
     content: |-
         The key that can be used to restore this cache. You can use the checksum macro to create a key that is based on a file’s checksum.
@@ -214,11 +203,7 @@ s3Bucket:
     width: "400"
 endpoint: Endpoint for S3 compatible providers (not needed for AWS).
 pathStyle: Select whether to use Virtual Hosted Style (http://bucket.host/key) or Path Style (http://host/bucket/key). For MinIO use Path Style (true). Default value is false.
-# reportPaths: Enter paths to file(s) that store results in the JUnit XML format. Regex is supported.
-# environmentVariables: Environment variables injected into the container to be used in the commands.
-# outputVariables: Output Variables can be used to expose Environment Variables to be used by other steps/stages of the pipeline.
 saveCacheKey: The key the cache will be identified by. You can use the checksum macro to create a key that is based on a file’s checksum. For example, myApp-{ { checksum filePath1 } }
-# saveCacheSourcePaths: A list of files/folders to cache
 saveCacheOverride:
     content: |-
         Select this option to override the cache if the key already exists.
@@ -231,7 +216,6 @@ dependencyConnector: Container registry to pull the service dependency image fro
 dependencyEnvironmentVariables: Environment variables injected into the container
 dependencyEntryPoint: Overrides the image ENTRYPOINT. Commands should be in exec form. Each command and parameter should be added separately. [Learn More](https://ngdocs.harness.io/article/vo4sjbd09g-configure-service-dependency-step-settings)
 dependencyArgs: Overrides the image COMMAND
-# dockerHubConnector: Docker Connector to use for uploading the image
 dockerHubRepository:
     content: |-
         The name of the registry. For example, `plugins/s3`.
@@ -239,7 +223,6 @@ dockerHubRepository:
         When using private Docker registries, use a fully qualified repo name.
     width: "400"
 dockerHubRemoteCache: The remote cache repository needs to be created in the same account and organization as the build image. The repository must already exist for caching to work
-# ecrConnector: AWS connector to use for uploading the image to ECR
 ecrAccount:
     content: |-
         The AWS account ID to use when pushing the image.
@@ -249,17 +232,11 @@ ecrAccount:
         See [Pushing a Docker image](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) from AWS.
     width: "400"
 ecrRemoteCache: The remote cache repository needs to be created in the same account and region as the build image. The repository must already exist for caching to work
-# gcrConnector: GCP connector to use for uploading the image to GCR
 gcrHost: GCR Host
 gcrProjectID: GCR Project ID
 gcrRemoteCache: The remote cache repository needs to be created in the same host and project as the build image. The repository will be automatically created if it doesn’t exist.
-# gcsConnector: GCP connector to use for uploading the artifact(s) to GCS.
 jFrogArtifactoryTarget: Repository name relative to the server URL in the connector. If pom.xml is not present then target should be full path to artifacts folder (groupID/artifactID/version)
 pluginImage: The name of the Plugin Docker image. The image name should include the tag and will default to the latest tag if unspecified. You can use any docker image from any docker registry, including docker images from private registries
-# pluginSettings: Plugin specific settings. Please refer to the plugin's documentation page
-# restoreCacheGcpConnector: GCP connector to use for restoring the cache from GCS
-# restoreCacheAwsConnector: AWS connector to use for restoring the cache from S3
-# runCommand: POSIX shell script executed inside the container. The script is invoked as if it were the container’s entrypoint.
 runTestsArgs:
     content: The arguments to be passed to the build tool. For Maven, it will be goal.
     width: "400"
@@ -276,9 +253,6 @@ runTestsPackages:
         If you do not provide the list and leave it empty, Harness will auto-detect the package.
     width: "400"
 runTestsTestAnnotations: "List of test annotations used in unit testing. They should be separated by comma. Any method annotated with this will be treated as test method. The defaults are: org.junit.Test, org.junit.jupiter.api.Test, org.testng.annotations.Test"
-# runTestsPreCommand: Commands used for setting up the environment before running tests.
-# runTestsPostCommand: Commands used for cleaning up the environment after running the tests
-# s3Connector: AWS connector to use for uploading the artifact(s) to S3
 gcpConnector: GCP connector to use for saving the cache to GCS
 saveCacheS3Connector: AWS connector to use for saving the cache to S3
 stageSpecificationsSharedPaths: By default, all of a stage’s steps use the same workspace to share data. If you need to share additional paths between steps, add Shared Paths.
@@ -3319,8 +3293,7 @@ SaveCacheGCS_stepName_StepConfig:
         The [Restore Cache from GCS](https://ngdocs.harness.io/article/e2o4sektz1) step restores files and directories that were saved using the Save Cache to GCS step.
     width: "400"
 savedCacheGcs_spec.connectorRef:
-    content: |-
-        The Harness Connector to use when saving the cache to Google GCS. [Learn More](https://ngdocs.harness.io/article/v0agy0hlyj-save-cache-in-gcs)
+    content: The Harness Connector to use when saving the cache to Google GCS. [Learn More](https://ngdocs.harness.io/article/v0agy0hlyj-save-cache-in-gcs)
     width: "400"
 savedCacheGcs_spec.sourcePaths:
     content: A list of the files/folders to cache. Add each file/folder separately.
@@ -3404,3 +3377,12 @@ pluginStep_timeout:
     content: Timeout for the step. Once the timeout is reached, the step fails.
     width: "400"
 artifactory_file_path: Enter the full artifact file path. [Learn More](https://ngdocs.harness.io/article/euueiiai4m-artifactory-connector-settings-reference#artifactory_with_terraform_scripts_and_variable_definitions_tfvars_files)
+SLO_form_name:
+    content: Enter a name for the SLO. A Service Level Objective (SLO) is an agreed-upon objective or a target value for system availability that's measured by service level indicator (SLI) metrics. It is the minimum reliability level that you expect a service to achieve most of the time. [Learn more](https://ngdocs.harness.io/article/trlszsj5lh-slo-management-quickstart#step_5_create_an_slo)
+    width: "400"
+SLO_form_monitoredServiceRef:
+    content: Select a Monitored Service from the list or click New Monitored Service to create one. A Harness Monitored Service is a Service and Environment combination that Harness monitors for any changes, such as deployments, infrastructure changes (Kubernetes events, auditing, etc), and incidents (PagerDuty), and any health trend deviations using logs and metrics obtained from APM and Logging tools respectively. [Learn more](https://ngdocs.harness.io/article/trlszsj5lh-slo-management-quickstart#step_1_add_a_new_monitored_service)
+    width: "400"
+SLO_form_userJourneyRef:
+    content: Select or create a user journey. A user journey is a visualization of a user's interaction with a service to achieve a specific goal over time and across different channels. [Learn more](https://ngdocs.harness.io/article/trlszsj5lh-slo-management-quickstart#step_define_an_slo)
+    width: "400"

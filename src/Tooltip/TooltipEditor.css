@@ -16,6 +16,7 @@
   cursor: move;
   width: 700px;
   font-weight: 600;
+  padding: 20px;
 }
 
 .labelRow {
@@ -24,11 +25,18 @@
   margin-left: 15px;
 }
 
-.learnMore {
-  padding: 15px 15px 0 15px;
+.learnMoreContainer {
   display: flex;
   align-items: center;
+  justify-items: center;
+  justify-content: space-between;
   background: #f8f9fa;
+  padding: 15px 15px 0 15px;
+}
+
+.learnMore {
+  display: flex;
+  align-items: center;
 }
 
 .noTooltips {
@@ -47,6 +55,7 @@
 
 .tabList {
   :global {
+    padding: 20px;
     .bp3-tab-list {
       align-items: center;
     }
@@ -65,7 +74,6 @@
 
 .editorHeadingRow {
   align-items: center;
-  padding: 20px;
   border-bottom: 1px solid grey;
 }
 

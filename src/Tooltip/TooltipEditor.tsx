@@ -6,7 +6,6 @@
  */
 
 import React, { useEffect, useState } from "react";
-import marked from "marked";
 import copy from "clipboard-copy";
 import { stringify, parse } from "yaml";
 import {
@@ -14,9 +13,6 @@ import {
   Icon,
   Label,
   NavbarHeading as Heading,
-  Popover,
-  PopoverInteractionKind,
-  Position,
   Tabs,
   Tab,
 } from "@blueprintjs/core";
@@ -34,6 +30,7 @@ export interface TooltipDictionaryInterface {
 export interface TooltipEditorProps {
   tooltipDictionary: TooltipDictionaryInterface;
   onClose?: () => void;
+  setPreviewDatasetFromLocalStorage?: (value: number) => void;
 }
 
 const getDefaultTooltipRecord = (
@@ -239,19 +236,6 @@ export const TooltipEditor = (props: TooltipEditorProps) => {
     indicateTooltipsWithEmptyContent(updatedList, editedTooltips);
   };
 
-  const _asHtml = (content: string) => {
-    return `${content
-      .split("\n\n")
-      .map(
-        (line) =>
-          `<p>${marked(line).replace(
-            new RegExp("href=", "g"),
-            'target="_blank" href='
-          )}</p>`
-      )
-      .join("")}`;
-  };
-
   const getTooltipWidthValue = (
     editedTooltips: TooltipDictionaryInterface,
     tooltipId: string
@@ -287,23 +271,40 @@ export const TooltipEditor = (props: TooltipEditorProps) => {
             title="Edit Tooltips in context"
             panel={
               <>
-                <div className={css.learnMore}>
-                  <Icon icon="info-sign" />
-                  <div className={css.learnMoreText}>
-                    Learn more about the new tooltip framework{" "}
-                    <a
-                      href="https://harness.atlassian.net/wiki/spaces/CDNG/pages/1626144816/NG+Tooltip+Framework+-+self+help+guide+for+docs"
-                      target="_blank"
-                    >
-                      here
-                    </a>
+                <div className={css.learnMoreContainer}>
+                  <div className={css.learnMore}>
+                    <Icon icon="info-sign" />
+                    <div className={css.learnMoreText}>
+                      Learn more about the new tooltip framework{" "}
+                      <a
+                        href="https://harness.atlassian.net/wiki/spaces/CDNG/pages/1626144816/NG+Tooltip+Framework+-+self+help+guide+for+docs"
+                        target="_blank"
+                      >
+                        here
+                      </a>
+                    </div>
+                    <Button
+                      intent="primary"
+                      icon="updated"
+                      className={css.updateContext}
+                      onClick={() => updateContext()}
+                      text="Update Context"
+                    />
                   </div>
                   <Button
-                    intent="primary"
-                    icon="updated"
                     className={css.updateContext}
-                    onClick={() => updateContext()}
-                    text="Update Context"
+                    text="Preview Tooltips"
+                    onClick={() => {
+                      const withExpiry = {
+                        value: editedTooltips,
+                        expiry: Date.now() + 2 * 60 * 60 * 1000,
+                      };
+                      localStorage.setItem(
+                        "previewTooltipDataset",
+                        JSON.stringify(withExpiry)
+                      );
+                      props.setPreviewDatasetFromLocalStorage?.(Date.now());
+                    }}
                   />
                 </div>
                 {allTooltips?.length ? (
@@ -422,35 +423,6 @@ export const TooltipEditor = (props: TooltipEditorProps) => {
                               />
                             </div>
                           )}
-                          {getTooltipContent(editedTooltips, tooltipId) ? (
-                            <Popover
-                              popoverClassName={css.previewTooltipWrapper}
-                              position={Position.RIGHT}
-                              usePortal={false}
-                              interactionKind={PopoverInteractionKind.HOVER}
-                              content={
-                                <div
-                                  className={css.previewTooltipContentWrapper}
-                                  style={{
-                                    maxWidth: `${getTooltipWidthValue(
-                                      editedTooltips,
-                                      tooltipId
-                                    )}px`,
-                                  }}
-                                  dangerouslySetInnerHTML={{
-                                    __html: _asHtml(
-                                      getTooltipContent(
-                                        editedTooltips,
-                                        tooltipId
-                                      )
-                                    ),
-                                  }}
-                                />
-                              }
-                            >
-                              <span className={css.previewLabel}>Preview</span>
-                            </Popover>
-                          ) : null}
                         </div>
                       );
                     })}
@@ -546,7 +518,10 @@ export const TooltipEditor = (props: TooltipEditorProps) => {
           <Icon
             icon="cross"
             className={css.closeButton}
-            onClick={() => props.onClose?.()}
+            onClick={() => {
+              props.onClose?.();
+              localStorage.removeItem("previewTooltipDataset");
+            }}
           />
         </Tabs>
       </div>

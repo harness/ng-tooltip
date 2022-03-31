@@ -16,9 +16,9 @@ stageOverviewDeploymentType: |-
     Select the platform for your deployment. When you select a platform, its specific settings appear.
 deploymentTypeManifests: Add the configuration files that describe the desired state of your app in terms of Kubernetes API object descriptions. All files in **Manifests** must have the .yaml file extension. [Learn More](https://ngdocs.harness.io/article/ssbq0xh0hx)
 deploymentTypeArtifacts: |-
-    If the image location is not specified in your Deployment manifest, you can add the image location to Harness as an Artifact. 
+    If the image location is not specified in your Deployment manifest, you can add the image location to Harness as an Artifact.
     Next, you reference the Artifact you added to Harness in your manifest like this:
-    `image: <+artifact.image>` 
+    `image: <+artifact.image>`
     [Learn More](https://ngdocs.harness.io/article/4ifq51cp0i)
 ciEditStage_name: Enter a name for the stage. [Learn more](https://ngdocs.harness.io/article/2chyf1acil)
 ciEditStage_repoName: Enter the name of the Git repo containing your codebase. [Learn more](https://ngdocs.harness.io/article/8l31vtr4hi)
@@ -26,7 +26,7 @@ ciBuildStage_name: Enter a name for the stage. [Learn More](https://ngdocs.harne
 dependencyBase_name: Enter a name for this Service Dependency step. [Learn More](https://ngdocs.harness.io/article/vo4sjbd09g-configure-service-dependency-step-settings)
 ciRunStep_name: The Run step executes one or more commands on a container image. Enter a name for this Run step. [Learn More](https://ngdocs.harness.io/article/1i1ttvftm4-run-step-settings)
 pluginStep_name: |-
-    Enter a unique name for this Plugin step. 
+    Enter a unique name for this Plugin step.
 
     Plugins are Docker containers that perform predefined tasks. Plugins are configured as steps in your stage. Plugins can be used to deploy code, publish artifacts, send notifications, and more. [Learn More](https://ngdocs.harness.io/article/8r5c3yvb8k)
 restoreCacheS3_name: |-
@@ -67,7 +67,7 @@ jfrogArt_name: |-
     The [Upload Artifacts to JFrog Artifactory](https://ngdocs.harness.io/article/gjoggc66fy) step creates a Docker image from a Dockerfile and pushes it to a JFrog Artifactory Docker repository.
 conditionalExecution: |-
     Conditional Execution uses JEXL operators and expressions. [Learn More](https://commons.apache.org/proper/commons-jexl/reference/syntax.html)
-     
+
     Examples:
 
     `<+steps.mystep.output.status> == “success”`
@@ -109,11 +109,11 @@ vaultConfigForm_readOnly: Select to make secrets within this vault Read-Only. [L
 vaultConfigForm_default: Make this your default secrets manager.
 stepGithubAuthForm_enableAPIAccess: Select this option if you are using this GitHub Connector for a Harness [Trigger](https://ngdocs.harness.io/article/hndnde8usz-triggering-pipelines), [Harness Git Experience](https://ngdocs.harness.io/article/utikdyxgfz-harness-git-experience-overview), or authenticating using a [GitHub App](https://ngdocs.harness.io/article/nze5evmqu1-git-hub-app-support).
 deployService_name: |-
-    Enter a name for this Service. 
+    Enter a name for this Service.
 
     A Service represents your microservices, Serverless functions, and other workloads logically. A Service is a logical entity to be deployed, monitored, or changed independently. [Learn More](https://ngdocs.harness.io/article/hv2758ro4e)
 
-    When a Service is added to the stage in a Pipeline, you define its Service Definition. Service Definitions represent the real artifacts, manifests, and variables of a Service. They are the actual files and variable values. 
+    When a Service is added to the stage in a Pipeline, you define its Service Definition. Service Definitions represent the real artifacts, manifests, and variables of a Service. They are the actual files and variable values.
 
     You can also propagate and override a Service in subsequent stages by selecting its name in that stage's **Service** settings. [Learn More](https://ngdocs.harness.io/article/t57uzu1i41)
 specifyYourEnvironment: |-
@@ -127,13 +127,13 @@ k8InfraConnector: |-
 
     Here's a [video](https://youtu.be/wUC23lmqfnY) that walks through setting up a Kubernetes Cluster Connector.
 k8InfraNamespace: |-
-    Enter the target namespace in the target cluster. 
+    Enter the target namespace in the target cluster.
 
     The namespace must already exist during deployment. Harness will not create a new namespace using the one you entered here. [Learn More](https://ngdocs.harness.io/article/0ud2ut4vt2)
 k8InfraReleaseName: |-
-    During deployment Harness creates a ConfigMap listing the resources of the release and uses the **Release name** for tracking them. 
+    During deployment Harness creates a ConfigMap listing the resources of the release and uses the **Release name** for tracking them.
 
-    The **Release name** is a combination of `release-` and a unique string created using the Harness expression `<+INFRA_KEY>`. 
+    The **Release name** is a combination of `release-` and a unique string created using the Harness expression `<+INFRA_KEY>`.
 
     For example, in a Kubernetes deployment you can see `harness.io/release-name=release-2f9eadcc06e2c2225265ab3cbb1160bc5eacfd4f`.
 
@@ -152,10 +152,16 @@ imagePath_imagePath: |+
     Wildcards are not supported.
 
 imagePath_tag: Enter the Docker [image tag](https://docs.docker.com/engine/reference/commandline/tag/).
-setContainerResources: |
-    Resources limits allow setting maximum values for the resources the container is allowed to use at runtime.
-    Use **Limit Memory** to limit the memory that the container can use. Limits for memory are measured in bytes. You can express memory as a plain integer or as a fixed-point number using one of these suffixes: G, M. You can also use the power-of-two equivalents: Gi, Mi.
-    Use **Limit CPU** to limit the number of cores that the container can use. Limits for CPU resources are measured in cpu units. Fractional requests are allowed. The expression 0.1 is equivalent to the expression 100m, which can be read as **one hundred millicpu**.
+setContainerResources: Maximum resource limits for containers that clone the codebase at runtime. See [Resource units in Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes).
+rightBarForm_memoryLimit: Maximum memory that the container can use. You can specify an integer or fixed-point value with one of these suffixes: G, M, Gi, Mi. Default is 500Mi.
+rightBarForm_cpuLimit: Maximum number of cores that the container can use. CPU resource limits are measured in CPU units. You can specify a fraction as well: 0.1 is equivalent to 100m, or 100 millicpu. Default is 400m.
+prCloneStrategy: |-
+    When a build is triggered by a pull request, this setting determines the branch to use for the artifact after the build process clones the repo.
+
+         - If **Merge Commit** (the default) is selected, the Pipeline tries to merge the Pull Request branch with the target branch before building the artifact. The artifact includes all PR and target commits, but builds can take longer and result in build failures.
+         - If **Source Branch** is selected, the Pipeline builds the artifact from the latest commit in the Pull Request branch. Builds can be faster and less likely to result in build failures, but the artifacts might not include some target-branch commits.
+
+    See [Pull Request Clone Strategy](https://ngdocs.harness.io/article/mozd8b49td-create-and-configure-a-codebase#pull_request_clone_strategy).
 image:
     content: |-
         The FQN (fully-qualified name) of the Docker image to use when running build commands. For example: `us.gcr.io/playground/quickstart-image`.
@@ -173,7 +179,7 @@ region:
 
         The registry format for ECR is:
 
-        `docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repo:tag>` 
+        `docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repo:tag>`
 
         A region is required.
 
@@ -248,7 +254,7 @@ runTestsLanguage:
     width: "400"
 runTestsPackages:
     content: |-
-        List of source code package prefixes separated by a comma. For example, `com.company.`, `io.company.migrations`. 
+        List of source code package prefixes separated by a comma. For example, `com.company.`, `io.company.migrations`.
 
         If you do not provide the list and leave it empty, Harness will auto-detect the package.
     width: "400"
@@ -261,7 +267,7 @@ gitDetailsStepForm_url: |-
     Enter the URL for your repo or account:
 
     - **Repos:** copy the URL provided by the Git provider. For example, see GitHub's [**Code** setting](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository).
-    - **Accounts:** The URL of your Git provider account, such as `https://github.com/mycompany`. In **Test Repository**, enter a repo to test the connection. 
+    - **Accounts:** The URL of your Git provider account, such as `https://github.com/mycompany`. In **Test Repository**, enter a repo to test the connection.
 
     [Learn More](https://ngdocs.harness.io/category/xyexvcc206)
 gitDetailsStepForm_validationRepo: |-
@@ -270,7 +276,7 @@ gitDetailsStepForm_validationRepo: |-
     The Connector will still be created at the Account level.
 connectorDetailsStepFormAws_name: Enter a name for this AWS Connector. You will use the name to select this Connector in Pipeline steps and settings. [Learn More](https://ngdocs.harness.io/article/m5vkql35ca)
 stepAwsAuthForm_crossAccountAccess: |-
-    Select this option if you want to use one AWS account for the connection, but you want to deploy or build in a different AWS account. 
+    Select this option if you want to use one AWS account for the connection, but you want to deploy or build in a different AWS account.
 
     In this scenario, the AWS account used for AWS access in **Credentials** will assume the IAM role you specify in **Cross-account role ARN** setting.
 
@@ -287,7 +293,7 @@ stepAwsAuthForm_externalId: |-
     For more information, see [How to Use an External ID When Granting Access to Your AWS Resources to a Third Party](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) from AWS.
 connectorDetailsStepFormGcp_name: Enter a name for this GCP Connector. [Learn More](https://ngdocs.harness.io/article/yykfduond6)
 connectorDetailsStepFormK8sCluster_name: |-
-    Enter a name for this Kubernetes Cluster Connector. 
+    Enter a name for this Kubernetes Cluster Connector.
 
     The Kubernetes Cluster Connector is platform-agnostic. Use it to access a cluster on any platform. [Learn More](https://ngdocs.harness.io/article/sjjik49xww)
 k8ClusterForm_masterUrl: |-
@@ -386,7 +392,7 @@ harnessApproval_spec.approvers.userGroups: Select the Harness User Groups that w
 harnessApproval_spec.approvers.minimumCount: Enter how many of the Users in the User Groups must approve the step. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
 harnessApproval_spec.approvers.disallowPipelineExecutor: Enable this option if you don't want to allow the User that initiated the Pipeline execution to approve this step. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
 terraformRollback_name: |
-    Enter a name for this step. 
+    Enter a name for this step.
 terraformRollback_spec.provisionerIdentifier: |-
     Enter the same Provisioner Identifier you used in the Terraform Plan and/or Apply steps that provisioned the infrastructure you want to roll back. Harness will roll back the exact infrastructure provisioned in those steps.
     [Learn More](https://ngdocs.harness.io/article/jgi6d73noy)
@@ -409,7 +415,7 @@ k8RolloutDeploy_name: Enter a name for this step.
 k8CanaryDeploy_name: Enter a name for this step.
 k8Scale_name: Enter a name for this step.
 k8Scale_spec.workload: |-
-    Enter the name of the resource to scale in the format `[namespace/]Kind/Name`, with `namespace` optional. For example: 
+    Enter the name of the resource to scale in the format `[namespace/]Kind/Name`, with `namespace` optional. For example:
 
     ```
     default/Deployment/harness-example
@@ -417,7 +423,7 @@ k8Scale_spec.workload: |-
 
     You can scale a Deployment, DaemonSet, or StatefulSet.
 
-    You can only enter one resource in **Workload**. To scale another resource, add another **K8s Scale** step. 
+    You can only enter one resource in **Workload**. To scale another resource, add another **K8s Scale** step.
 
     [Learn More](https://ngdocs.harness.io/article/jxe5z9domw)
 k8RollingRB_name: Enter a name for this step.
@@ -425,7 +431,7 @@ terraformEdit-TerraformDestroy-EXECUTION_name: Enter a name for this step.
 terraformEdit-TerraformDestroy-EXECUTION_spec.configuration.type: |-
     There are three options:
 
-    - **Inline:** Removes the provisioned resources you identify using **Provisioner Identifier** and other settings. 
+    - **Inline:** Removes the provisioned resources you identify using **Provisioner Identifier** and other settings.
 
     - **Inherit from Plan:** Removes the resources defined in the Harness **Terraform Plan** step that you identify using **Provisioner Identifier**. Similar to `terraform plan -destroy`.
 
@@ -443,7 +449,7 @@ terraformEdit-TerraformApply-EXECUTION_spec.configuration.type: |-
 
     [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
 terraformEdit-TerraformApply-EXECUTION_spec.provisionerIdentifier: |-
-    The **Provisioner Identifier** identifies the provisioning applied in this step. 
+    The **Provisioner Identifier** identifies the provisioning applied in this step.
 
     - If you selected **Inherit from Plan** in **Configuration Type**, enter the Id used by the **Terraform Plan** step for the plan you want to apply.
 
@@ -459,7 +465,7 @@ terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.command: |-
 
     [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
 terraformPlanEditView-tfPlan-EXECUTION_spec.provisionerIdentifier: |-
-    Enter a unique string to identify the provisioning configured in this step. 
+    Enter a unique string to identify the provisioning configured in this step.
 
     You will use this **Provisioner Identifier** in additional steps to refer to the provisioning set up in this step.
 
@@ -472,13 +478,13 @@ barrierStep_spec.barrierRef: |-
 
     You can have multiple barriers in a stage. Every barrier in the same stage must use a unique Barrier Reference.
 pipelineCreate_name: |-
-    Enter a name for the Pipeline. You can also edit the automatically generated Id. 
+    Enter a name for the Pipeline. You can also edit the automatically generated Id.
 
     The Pipeline name can be edited later, but Ids cannot be edited once a Pipeline has been saved.
 
     If you are new to Harness, try a [Quickstart](https://ngdocs.harness.io/article/u8lgzsi7b3).
 pipelineCreate_timeout: |-
-    Enter a timeout for the entire Pipeline. You can also make this setting a runtime input or use a Harness expression. 
+    Enter a timeout for the entire Pipeline. You can also make this setting a runtime input or use a Harness expression.
 
     Keep in mind that all Pipeline steps have timeout settings too.
 
@@ -493,7 +499,7 @@ ShellScript_stepName: |-
 
     See **Execution Target** in **Optional Configuration** to select where the script is run. [Learn More](https://ngdocs.harness.io/article/k5lu0u6i1i)
 shellScriptForm_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -512,7 +518,7 @@ shellScriptForm_spec.source.spec.script: |-
 
     ```
     export BUILD_NO="345"
-    export LANG="en-us" 
+    export LANG="en-us"
     ```
     You must use quotes around the value because environment variables are Strings.
 
@@ -521,7 +527,7 @@ shellScriptForm_spec.source.spec.script: |-
 Http_stepName: The HTTP step can run HTTP methods containing URLs, methods, headers, and variables. You can add assertions that use the response from the HTTP method.
 httpWidget_name: Enter a name for this step. [Learn More](https://ngdocs.harness.io/article/64hhfpbgbj)
 httpWidget_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -568,7 +574,7 @@ httpWidget_spec.outputVariables: |-
 JiraApproval_stepName: |-
     You can use Jira issues to approve or reject a Pipeline or stage at any point in its execution.
 
-    During deployment, the Jira issue you select is evaluated according to **Approval Criteria** you define in this step. 
+    During deployment, the Jira issue you select is evaluated according to **Approval Criteria** you define in this step.
 
     If the issue meets the criteria the Pipeline or stage may proceed. [Learn More](https://ngdocs.harness.io/article/2lhfk506r8)
 jiraApproval_name: Enter a name for this step.
@@ -600,7 +606,7 @@ jiraApprovalapprovalCriteria: |-
     If you add rejection criteria it is used in addition to the settings in **Approval Criteria**.
 K8sBGSwapServices_stepName: In this step, Harness swaps the primary service (prod traffic) to the pod set running the new app and the stage service (stage traffic) to the set running the old app. [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
 k8BgSwap_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -615,7 +621,7 @@ k8BgSwap_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 K8sBlueGreenDeploy_stepName: |-
-    This step deploys your new app version to the stage pod set. 
+    This step deploys your new app version to the stage pod set.
 
     The first time this step is run it creates any needed Kubernetes services and pod sets for the app.
 
@@ -623,7 +629,7 @@ K8sBlueGreenDeploy_stepName: |-
 
     [Learn More](https://ngdocs.harness.io/article/mog5tnk5pi)
 k8BG_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -638,11 +644,11 @@ k8BG_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 k8BG_spec.skipDryRun: |-
-    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it. 
+    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it.
 
     If the **Skip Dry Run** option is selected, Harness will not use the `--dry-run` flag.
 k8Apply_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -672,7 +678,7 @@ k8Apply_spec.filePaths: |-
 
     [Learn More](https://ngdocs.harness.io/article/00el61pzok)
 k8Apply_spec.skipDryRun: |-
-    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it. 
+    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it.
 
     If the **Skip Dry Run** option is selected, Harness will not use the `--dry-run` flag.
 k8Apply_spec.skipSteadyStateCheck: |-
@@ -681,7 +687,7 @@ k8Apply_spec.skipSteadyStateCheck: |-
     If you select this option, Harness will not check that the workload has reached steady state.
 K8sDelete_stepName: The K8s Delete step can remove any deployed Kubernetes resources. [Learn More](https://ngdocs.harness.io/article/eaj0xuegln)
 k8DeleteData_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -698,7 +704,7 @@ k8DeleteData_timeout: |-
 k8DeleteData_spec.deleteResources.spec.deleteNamespace: If you select the **Delete namespace** option, Harness will delete the namespace(s) defined in the release.
 K8sCanaryDelete_stepName: The **Canary Delete** step is used to clean up the workload deployed by the [Canary](https://ngdocs.harness.io/article/17wrdeuv0x-) step. [Learn More](https://ngdocs.harness.io/article/922mtcvank)
 k*CanaryDelete_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -713,11 +719,11 @@ k*CanaryDelete_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 K8sRollingDeploy_stepName: |-
-    The **K8s Rollout Deploy** step performs a Kubernetes [rolling update strategy](https://ngdocs.harness.io/article/0zsf97lo3c-deployment-concepts). 
+    The **K8s Rollout Deploy** step performs a Kubernetes [rolling update strategy](https://ngdocs.harness.io/article/0zsf97lo3c-deployment-concepts).
 
     All nodes within a single environment are incrementally added one-by-one with a new service/artifact version. The rolling update uses the number of pods you specified in **Manifests** (number of replicas). [Learn More](https://ngdocs.harness.io/article/2bwlugh9gi)
 k8RolloutDeploy_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -732,12 +738,12 @@ k8RolloutDeploy_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 k8RolloutDeploy_spec.skipDryRun: |-
-    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it. 
+    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it.
 
     If the **Skip Dry Run** option is selected, Harness will not use the `--dry-run` flag.
 K8sCanaryDeploy_stepName: The **K8s Canary Deploy** step sets how many pods are created for a Canary deployment of the files in your Service Definition **Manifests** section. [Learn More](https://ngdocs.harness.io/article/i5p4feil89)
 k8CanaryDeploy_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -753,18 +759,18 @@ k8CanaryDeploy_timeout: |-
     Timeouts can be set at the Pipeline level also.
 k8CanaryDeploy_spec.instanceSelection: |-
     Define how many pods are deployed for a Canary test of the configuration files in your Service Definition **Manifests** section:
-     
+
     - If you selected **Instance Count**, this is simply the number of pods.
     - If you selected **Percentage**, enter a percentage of the pods defined in your Service Definition **Manifests** files.
 
     [Learn More](https://ngdocs.harness.io/article/i5p4feil89)
 k8CanaryDeploy_spec.skipDryRun: |-
-    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it. 
+    By default, Harness uses the `--dry-run` flag on the `kubectl apply` command, which prints the object that would be sent to the cluster without really sending it.
 
     If the **Skip Dry Run** option is selected, Harness will not use the `--dry-run` flag.
 K8sScale_stepName: The **K8s Scale** step you can scale the number of running pods up or down by count or percentage. [Learn More](https://ngdocs.harness.io/article/jxe5z9domw)
 k8Scale_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -794,7 +800,7 @@ K8sRollingRollback_stepName: |-
 
     **Rollback rolls back workloads only.** If there are other objects or operations executed in your stage, Harness does not roll those back.
 k8RollingRB_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -815,7 +821,7 @@ TerraformDestroy_stepName: |-
 
     The **Terraform Destroy** step can also be used as part of target infrastructure provisioning. [Learn More](https://ngdocs.harness.io/article/uznls2lvod-provision-infra-dynamically-with-terraform)
 terraformEdit-TerraformDestroy-EXECUTION_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -831,7 +837,7 @@ terraformEdit-TerraformDestroy-EXECUTION_timeout: |-
     Timeouts can be set at the Pipeline level also.
 TerraformRollback_stepName: Use the Terraform Rollback step to roll back your infrastructure and resources and return your environment to its pre-deployment state. [Learn More](https://ngdocs.harness.io/article/jgi6d73noy)
 terraformRollback_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -846,7 +852,7 @@ terraformRollback_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 terraformEdit-TerraformApply-EXECUTION_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -863,7 +869,7 @@ terraformEdit-TerraformApply-EXECUTION_timeout: |-
 TerraformApply_stepName: |-
     You can apply a Terraform plan or script using the **Terraform Apply** step. [Learn More](https://ngdocs.harness.io/article/hdclyshiho)
 
-    Typically the **Terraform Apply** step is used with the **Terraform Plan** step to apply a plan. 
+    Typically the **Terraform Apply** step is used with the **Terraform Plan** step to apply a plan.
 
     For steps on using the Terraform Plan step, see [Plan Terraform Provisioning with the Terraform Plan Step](https://ngdocs.harness.io/article/52n3j0ci72).
 tfConfigurationFile: |-
@@ -885,7 +891,7 @@ TerraformPlan_stepName: |-
 
     You can then add a **Terraform Apply** step later in your stage to apply the plan. [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
 terraformPlanEditView-tfPlan-EXECUTION_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -905,7 +911,7 @@ terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.secretManagerRef: |-
     Select a [Secrets Manager](https://ngdocs.harness.io/article/hngrlb7rd6) to use for encrypting/decrypting and saving the Terraform plan file. [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
 HarnessApproval_stepName: The Manual Approval step lets you specify Harness User Group(s) to approve or reject a Pipeline at any point in its execution. [Learn More](https://ngdocs.harness.io/article/fkvso46bok)
 harnessApproval_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -925,7 +931,7 @@ Barrier_stepName: |-
 
     Before you add a **Barrier** step to a stage, barriers must be are added in the Pipeline's **Flow Control** settings. [Learn More](https://ngdocs.harness.io/article/dmlf8w2aeh)
 barrierStep_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -946,7 +952,7 @@ JiraCreate_stepName: |-
 
     [Video walkthrough](https://youtu.be/xVeICozz4lU)
 jiraCreate_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -965,7 +971,7 @@ jiraCreate_spec.description: Add a description for the issue.
 jiraCreateAddFields: |-
     Add specific fields within a Jira issue.
 
-    Harness supports only Jira fields of type `Option`, `Array`, `Any`, `Number`, `Date`, and `String`. 
+    Harness supports only Jira fields of type `Option`, `Array`, `Any`, `Number`, `Date`, and `String`.
 
     Harness does not integrate with Jira fields that manage users, issue links, or attachments. This means that Jira fields like Assignee and Sprint are not accessible in Harness' Jira integration.
 jiraSelectFromFieldList: Select from the fields Harness retrieved from Jira using the Jira Connector, Project, and Issue Type.
@@ -973,7 +979,7 @@ jiraProvideFromFieldList: Add fields for the issue.
 JiraUpdate_stepName: You can update a Jira issue as a step in the execution of a Pipeline. [Learn More](https://ngdocs.harness.io/article/urdkli9e74)
 jiraUpdate_name: Enter a name for this step.
 jiraUpdate_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -992,7 +998,7 @@ jiraUpdate_spec.issueKey: Enter the Jira issue key of the issue you want to upda
 jiraUpdate_spec.transitionTo.status: Enter the status type (Issue Action) to update the issue with (In Progress, Done, etc). Harness will automatically update the issue with this status.
 jiraUpdate_spec.transitionTo.transitionName: Enter the name of the transition to move the issues into.
 terraformPlanEditView-tfPlan-INFRASTRUCTURE_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -1011,7 +1017,7 @@ terraformPlanEditView-tfPlan-INFRASTRUCTURE_spec.configuration.secretManagerRef:
 
     Select a [Secrets Manager](https://ngdocs.harness.io/article/hngrlb7rd6) to use for encrypting/decrypting and saving the Terraform plan file.
 terraformEdit-TerraformApply-INFRASTRUCTURE_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -1026,7 +1032,7 @@ terraformEdit-TerraformApply-INFRASTRUCTURE_timeout: |-
 
     Timeouts can be set at the Pipeline level also.
 terraformEdit-TerraformDestroy-INFRASTRUCTURE_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -1186,7 +1192,7 @@ terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.workspace: |-
 TerraformPlan_stepName_StepConfig: |-
     The **Terraform Plan** step runs a Terraform script as a Terraform plan. [Learn More](https://ngdocs.harness.io/article/52n3j0ci72)
 
-    You can run the **Terraform Plan** step to provision any resource. 
+    You can run the **Terraform Plan** step to provision any resource.
 
     The [Terraform Apply](https://ngdocs.harness.io/article/hdclyshiho) and [Terraform Destroy](https://ngdocs.harness.io/article/j75xc704c8) steps can inherit the plan and perform their apply and destroy operations.
 terraformPlanEditView-tfPlan-EXECUTION_spec.configuration.backendConfig.spec.content: |-
@@ -1345,7 +1351,7 @@ K8sApply_stepName_StepConfig: |-
 
     CD stages include an **K8s Apply** step that allows you to deploy any resource you have set up in the **Manifests** section. [Learn More](https://ngdocs.harness.io/article/00el61pzok)
 K8sRollingDeploy_stepName_StepConfig: |-
-    The **K8s Rollout Deploy** step performs a rolling update strategy. 
+    The **K8s Rollout Deploy** step performs a rolling update strategy.
 
     It updates Kubernetes deployments with zero downtime by incrementally updating pod instances with new ones. New pods are scheduled on nodes using the available resources. [Learn More](https://ngdocs.harness.io/article/xsla71qg8t)
 K8sCanaryDeploy_stepName_StepConfig: The **K8s Canary Deploy** step defines how many pods are deployed for a Canary test of the configuration files in your Service Definition **Manifests** section. [Learn More](https://ngdocs.harness.io/article/i5p4feil89)
@@ -1390,7 +1396,7 @@ Verify_stepName_StepConfig: |-
     [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
 cvData_name: Enter a name for this step.
 cvData_timeout: |-
-    Enter a timeout for this step. 
+    Enter a timeout for this step.
 
     You can use:
 
@@ -1417,7 +1423,7 @@ cvData_spec.type: |-
 cvData_spec.monitoredServiceRef: |-
     Click **Click to autocreate a monitored service**.
 
-    Harness automatically creates a Monitored Service using a concatenation of the Service and Environment names. 
+    Harness automatically creates a Monitored Service using a concatenation of the Service and Environment names.
 
     For example, a Service named `todolist` and an Environment named `dev` will result in a Monitored Service named `todolist_dev`.
 
@@ -1425,7 +1431,7 @@ cvData_spec.monitoredServiceRef: |-
 
     [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
 cvData_spec.spec.sensitivity: |-
-    Select the risk level that will be used as failure criteria during the deployment. 
+    Select the risk level that will be used as failure criteria during the deployment.
 
     When the criteria are met, the **Failure Strategy** for the stage or step is executed.
 
@@ -1544,7 +1550,7 @@ helmRepoAuthForm_username: If the charts are backed by HTTP basic authentication
 helmRepoAuthForm_password: If the charts are backed by HTTP basic authentication, you can also supply the password. See [Share your charts with others](https://helm.sh/docs/topics/chart_repository/#share-your-charts-with-others) from Helm.
 NexusConnectorDetailsTooltip: Connect Harness to your Nexus artifact repo. [Learn More](https://ngdocs.harness.io/article/faor0dc98d)
 NexusConnectorAuthentication: |-
-    Ensure the connected user account has the following permissions in the Nexus Server. 
+    Ensure the connected user account has the following permissions in the Nexus Server.
 
     - Repo: All repositories (Read)
     - Nexus UI: Repository Browser
@@ -1572,7 +1578,7 @@ githubURLType: |-
     [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
 githubConnectionType:
     content: |-
-        You can select **HTTP** or **SSH** for the connection. 
+        You can select **HTTP** or **SSH** for the connection.
 
         You will need to provide the protocol-relevant URL in **URL**.
 
@@ -1594,7 +1600,7 @@ githubAuthentication: |-
 
     You can use a password/token for HTTPS credentials.
 
-    If you selected SSH as the connection protocol, you must add the SSH Key for use with the connection. 
+    If you selected SSH as the connection protocol, you must add the SSH Key for use with the connection.
 
     **Note:** Readonly GitHub repos also require username and password/token.
 
@@ -1617,7 +1623,7 @@ gitHubPersonalAccessTooltip: |-
 
     `curl -i https://api.github.com -u <username>:<token>`
 
-    **Note:** If you've set up 2FA in your Git repo, then you need to generate a PAT in your repo and enter that token in the **Personal Access Token** setting. See [GitHub settings](https://github.com/settings/tokens/new) for steps on setting up the personal access token. 
+    **Note:** If you've set up 2FA in your Git repo, then you need to generate a PAT in your repo and enter that token in the **Personal Access Token** setting. See [GitHub settings](https://github.com/settings/tokens/new) for steps on setting up the personal access token.
 stepGithubAuthForm_accessToken: |-
     A Harness [Encrypted Text secret](https://ngdocs.harness.io/article/osfw70e59c) for the Personal Access Token (PAT).
 
@@ -1627,7 +1633,7 @@ stepGithubAuthForm_accessToken: |-
 
     `curl -i https://api.github.com -u <username>:<token>`
 
-    **Note:** If you've set up 2FA in your Git repo, then you need to generate a PAT in your repo and enter that token in the **Personal Access Token** setting. See [GitHub settings](https://github.com/settings/tokens/new) for steps on setting up the personal access token. 
+    **Note:** If you've set up 2FA in your Git repo, then you need to generate a PAT in your repo and enter that token in the **Personal Access Token** setting. See [GitHub settings](https://github.com/settings/tokens/new) for steps on setting up the personal access token.
 stepGithubAuthForm_apiAccessToken: ""
 githubApiAuthentication: You can use a Personal Access Token or GitHub App for authentication. [Learn More about using a GitHub App with Harness](https://ngdocs.harness.io/article/nze5evmqu1)
 stepGithubAuthForm_installationId: |-
@@ -1668,7 +1674,7 @@ ff_ffVariations_heading: |-
     A Feature flag has default variations.  A boolean flag can have false set as its default off variation and true set as its default on variation. A multivariate flag could have variation 1 set as its default off variation and variation 2 set as its default on variation, with variation 3 configured to appear when a user has a certain email address
     [Learn More](https://ngdocs.harness.io/article/8bf3us11kz)
 ff_ffPrerequisites_heading: |-
-    Prerequisites allow you to add a flag as a dependency to enable a feature. You can add any other existing flags from your environment as a prerequisite. 
+    Prerequisites allow you to add a flag as a dependency to enable a feature. You can add any other existing flags from your environment as a prerequisite.
     [Learn More](https://ngdocs.harness.io/article/iijdahygdm)
 ff_ffDefaultRules_heading:
     content: Using default rules, you can specify to serve a specific variation.
@@ -1710,7 +1716,7 @@ bitbAuthForm_password: |-
 bitbAuthForm_enableAPIAccess: This option is required for using Git-based triggers, Webhooks management, and updating Git statuses.
 bitbAuthForm_apiAccessUsername: Enter the username connected to the personal access token.
 bitbAuthForm_accessToken: |-
-    Create or select a Harness [Encrypted Text secret](https://ngdocs.harness.io/article/osfw70e59c) for the personal access token. 
+    Create or select a Harness [Encrypted Text secret](https://ngdocs.harness.io/article/osfw70e59c) for the personal access token.
 
     See [Personal Access Tokens](https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html) from Bitbucket.
 connectorDetailsStepFormGit_name: |-
@@ -1755,7 +1761,7 @@ gitlabDetailsStepForm_url: |-
     [Learn More](https://ngdocs.harness.io/article/5abnoghjgo)
 gitlabDetailsStepForm_validationRepo: Enter the repo for Harness to use to test the connection.
 stepGitlabAuth_username: |-
-    Enter the GitLab account username for Harness to use. 
+    Enter the GitLab account username for Harness to use.
 
     Often, the username `git` will work. [Learn More](https://ngdocs.harness.io/article/5abnoghjgo)
 stepGitlabAuth_password: |-
@@ -1767,7 +1773,7 @@ stepGitlabAuth_apiAccessToken: Create or select a Harness [Encrypted Text secret
 jiraDetailsForm_jiraUrl: |-
     Enter the base URL by which your users access your Jira applications. For example: `https://mycompany.atlassian.net`.
 
-    In Jira, the base URL is set to the same URL that Web browsers use to view your Jira instance. 
+    In Jira, the base URL is set to the same URL that Web browsers use to view your Jira instance.
 
     For details, see [Configuring the Base URL](https://confluence.atlassian.com/adminjiraserver071/configuring-the-base-url-802593107.html) from Atlassian.
 
@@ -1804,9 +1810,9 @@ awsSMConfigForm_credType: |-
 awsSMConfigForm_accessKey: Create or select a Harness [Encrypted Text secret](https://ngdocs.harness.io/article/osfw70e59c) using the AWS Access Key ID for the IAM user you want to use for AWS Secrets Manager connections.
 awsSMConfigForm_secretKey: Create or select a Harness [Encrypted Text secret](https://ngdocs.harness.io/article/osfw70e59c) using the contents of the Secret Key corresponding to the Access Key ID.
 awsSMConfigForm_secretNamePrefix: |-
-    Enter a prefix to be added to all secrets. 
+    Enter a prefix to be added to all secrets.
 
-    For example, `devops` will result in secrets like `devops/mysecret`. The prefix is not a folder name, but a prefix. 
+    For example, `devops` will result in secrets like `devops/mysecret`. The prefix is not a folder name, but a prefix.
 
     AWS Secrets Manager uses is a flat naming method.
 awsSMConfigForm_region: Select the AWS Region for the Secrets Manager.
@@ -1817,7 +1823,7 @@ awsSMConfigForm_externalId: |-
 
     For more information, see [How to Use an External ID When Granting Access to Your AWS Resources to a Third Party](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) from AWS.
 awsSMConfigForm_assumeStsRoleDuration: |-
-    This is the AssumeRole Session Duration. 
+    This is the AssumeRole Session Duration.
 
     See **Session Duration** in the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) AWS docs.
 connectorDetailsStepFormAzureKeyVault_name: Enter a name for this Azure Key Vault Connector. [Learn More](https://ngdocs.harness.io/article/53jrd1cv4i)
@@ -1894,16 +1900,16 @@ delegateSetupStepForm_k8sConfigDetails.namespace: |
 
     This centralized model is simple and efficient, but it doesn't let you restrict teams to deploying into specific namespaces. Any team member can deploy to any namespace.
 
-    As an alternative, you can use a distributed model that places a Delegate in a specific namespace in the cluster. It limits each Delegate to deploying into its own namespace only. 
+    As an alternative, you can use a distributed model that places a Delegate in a specific namespace in the cluster. It limits each Delegate to deploying into its own namespace only.
 
     Later, when you set up a Harness Kubernetes Cluster Connector to the cluster, you can use a service account in that namespace with the Cluster Admin role. [Learn More](https://ngdocs.harness.io/article/jud4rz7wl4)
 orgForm_name: |-
-    Enter a name for this organization. 
+    Enter a name for this organization.
 
     Harness Organizations (Orgs) allow you to group Harness Projects that share the same goal. For example, all Projects for a business unit or division. [Learn More](https://ngdocs.harness.io/article/7fibxie636)
 vaultConfigForm_namespace: Enter the Vault [namespace](https://www.vaultproject.io/docs/enterprise/namespaces) if you use Vault namespaces to support tenant isolation.
 gitSyncRepoForm_name: |-
-    Enter a name for the repo. 
+    Enter a name for the repo.
 
     It doesn't have to be the same as the Git repo name. The name you enter here will appear in Harness only. It'll identify the Project repo. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
 
@@ -1912,7 +1918,7 @@ gitSyncRepoForm_name: |-
 gitSyncRepoForm_repo: |-
     Once you add a Connector above you should see the repo URL in **Repository URL**.
 
-    Click **Test Connection**. Once Harness verifies the connection, you will see `Connection Successful`. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj) 
+    Click **Test Connection**. Once Harness verifies the connection, you will see `Connection Successful`. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 gitSyncRepoForm_rootfolder: |-
@@ -1922,7 +1928,7 @@ gitSyncRepoForm_rootfolder: |-
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 gitSyncRepoForm_branch: |-
-    Select the branch that you want to use, such as **main**. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj) 
+    Select the branch that you want to use, such as **main**. [Learn More](https://ngdocs.harness.io/article/hzajxmb3oj)
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 gitSyncRepoTab_repo: |-
@@ -1952,7 +1958,7 @@ saveToGitForm_name: |-
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 saveToGitForm_repoIdentifier: |-
-    Enter the name of the repo to use. 
+    Enter the name of the repo to use.
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 saveToGitForm_rootFolder: |-
@@ -1962,15 +1968,15 @@ saveToGitForm_rootFolder: |-
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 saveToGitForm_filePath: |-
-    Enter a name for the YAML file, such as `Example.yaml`. Harness will generate one automatically from the Pipeline name, but you can add your own. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x) 
+    Enter a name for the YAML file, such as `Example.yaml`. Harness will generate one automatically from the Pipeline name, but you can add your own. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x)
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 saveToGitForm_commitMsg: |-
-    Enter a message for the commit that adds this Connector. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x) 
+    Enter a message for the commit that adds this Connector. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x)
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 saveToGitForm_createPr: |-
-    You can start a pull request for adding this Connector. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x) 
+    You can start a pull request for adding this Connector. [Learn More](https://ngdocs.harness.io/article/auqv67yr6x)
 
     New to Harness Git Experience? See the [Quickstart](https://ngdocs.harness.io/article/dm69dkv34g-harness-git-experience-quickstart).
 saveToGitForm_branch: |-
@@ -1990,7 +1996,7 @@ failureStrategyDeployStage: |-
     - **Stage-level:** the failure strategy for all steps and step groups in the stage. The stage-level strategy can be overridden by step and step group failure strategies, if present.
 overlayInputSet_name: Overlays are groups of Input Sets. Overlays enable you to provide several Input Sets when executing a Pipeline. [Learn More](https://ngdocs.harness.io/article/3fqwa8et3d)
 inputSetForm_name: |-
-    An Input Set includes all the runtime inputs for the Pipeline. 
+    An Input Set includes all the runtime inputs for the Pipeline.
 
     You can create multiple Input Sets, each with a different set of values for the Pipeline's runtime inputs.
 
@@ -2004,7 +2010,7 @@ userGroupForm_name: |-
 
     Harness User Groups help you manage User access. [Learn More](https://ngdocs.harness.io/article/dfwuvmy33m)
 userGroupForm_userList: |-
-    Select the Users for this User Group. 
+    Select the Users for this User Group.
 
     Each User in a User Group inherits the roles assigned to that group. [Learn More](https://ngdocs.harness.io/article/dfwuvmy33m)
 serviceAccountForm_name: Admin Users of an account can create a Service Account with specific Role Bindings. [Learn More](https://ngdocs.harness.io/article/e5p4hdq6bd)
@@ -2076,7 +2082,7 @@ gcpInfraCluster: |-
 
     The GCP service account used for any credentials requires the **Kubernetes Engine Admin (GKE Admin)** role to get the Kubernetes master username and password. Harness also requires **Storage Object Viewer** permissions. [Learn More](https://ngdocs.harness.io/article/yykfduond6)
 gcpInfraNamespace: |-
-    Enter the target namespace in target cluster. 
+    Enter the target namespace in target cluster.
     The namespace must already exist during deployment. Harness will not create a new namespace if you enter one here. [Learn More](https://ngdocs.harness.io/article/0ud2ut4vt2)
 gcpInfraAllowSimultaneousDeployments: By default, Harness queues deployments to the same infrastructure to avoid conflicts. If you want to allow simultaneous deployments to this infrastructure, enable this option.
 cfFlagElem_name: "Enter a name for your boolean flag. When you name a feature flag, Harness automatically generates its identifier. "
@@ -2107,7 +2113,7 @@ ccmOverviewTitle: |-
     - Complete cost transparency across engineering and finance with robust business intelligence (BI)
     - Ability to reduce wasted cloud costs by up to 75% with Intelligent Cloud AutoStopping
     - ML-based recommendations
-     
+
     [Learn more](https://ngdocs.harness.io/article/n8e7rddf8w)
 overviewSummaryTotalCost: For Kubernetes clusters, the total cost is the sum of all the node costs. For ECS clusters, the sum of all container instances.
 overviewSummaryForecastedCost: |
@@ -2116,7 +2122,7 @@ overviewSummaryForecastedCost: |
 
     [Learn more](https://ngdocs.harness.io/article/hs7cyi1nix-harness-key-cloud-cost-concepts#forecasted_cost)
 overviewCostEfficiencyScore: |-
-    A measure of how cost-optimized your resource usage is across your clusters. It is derived from the total and idle (and or unallocated) spend of your resources.  
+    A measure of how cost-optimized your resource usage is across your clusters. It is derived from the total and idle (and or unallocated) spend of your resources.
 
     [Learn more](https://ngdocs.harness.io/article/hs7cyi1nix-harness-key-cloud-cost-concepts#cost_efficiency_score)
 ccmPerspectives: Perspectives allow you to group your resources in ways that are more meaningful to your business needs. It provides a unified view of your cloud cost data across the cloud environment. For example, you can group and filter by Account, Environment, Service, Region, Product, Label, Namespace, Workload, etc. and create a perspective for your business, finance, and engineering teams. [Learn more](https://ngdocs.harness.io/article/dvspc6ub0v)
@@ -2136,7 +2142,7 @@ ccmRecommendations: |-
     [Workload Recommendations](https://ngdocs.harness.io/article/o75arkcg8i)
     [Node Pool Recommendations](https://ngdocs.harness.io/article/x75xp0xime)
 gitOps: |
-    Argo CD GitOps, as a tool, keeps all configurations in sync and applies the desired state directly (and only from Git). 
+    Argo CD GitOps, as a tool, keeps all configurations in sync and applies the desired state directly (and only from Git).
     Harness provides GitOps by integrating Argo CD into the Harness Manager. Once integrated, you can perform your Harness deployments and create and manage your Argo CD Application from within the same interface.
 
     [Learn more](https://ngdocs.harness.io/article/ptlvh7c6z2)
@@ -2148,11 +2154,11 @@ GitOpsProviderStepFormNameIdDescriptionTags_description: |-
     Give a description for your Adapter.
     Description field contains a summary of the Adapter.
 
-    Information in the description field is automatically and instantly saved so that you can work on the same item at the same time and see the changes you make in real time. 
+    Information in the description field is automatically and instantly saved so that you can work on the same item at the same time and see the changes you make in real time.
 GitOpsProviderStepFormNameIdDescriptionTags_tags:
     content: |
         Enter a tag for your Adapter.
-        This is an optional field. 
+        This is an optional field.
         A Tag field allows you to label the content with keywords (tags)
     width: "400"
 GitOpsProviderStepFormundefined_spec.adapterUrl: |-
@@ -2185,7 +2191,7 @@ webhookTrigger_description:
     width: "400"
 webhookTrigger_tags:
     content: |-
-        Add tags for the Trigger. 
+        Add tags for the Trigger.
 
         [Learn More about Triggers](https://ngdocs.harness.io/article/hndnde8usz)
 
@@ -2288,7 +2294,7 @@ wizardForm_webhook_headerConditions.0.key:
     content: |-
         Enter the header attribute for comparison.
 
-        The header expression format is `<+trigger.header['key-name']>`. 
+        The header expression format is `<+trigger.header['key-name']>`.
 
         For example `<+trigger.header['X-GitHub-Event']>`.
 
@@ -2298,9 +2304,9 @@ wizardForm_webhook_headerConditions.0.key:
     width: "650"
 wizardForm_webhook_headerConditions.0.operator:
     content: |-
-        Select the operator for matching the value in **Matches Value**. 
+        Select the operator for matching the value in **Matches Value**.
 
-        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty. [Learn More](https://ngdocs.harness.io/article/rset0jry8q) 
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty. [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
 
         **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
     width: "400"
@@ -2326,9 +2332,9 @@ wizardForm_webhook_payloadConditions.0.key:
     width: "650"
 wizardForm_webhook_payloadConditions.0.operator:
     content: |-
-        Select the operator for matching the value in **Matches Value**. 
+        Select the operator for matching the value in **Matches Value**.
 
-        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty. [Learn More](https://ngdocs.harness.io/article/rset0jry8q) 
+        If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty. [Learn More](https://ngdocs.harness.io/article/rset0jry8q)
 
         **Note:** Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
     width: "400"
@@ -2348,7 +2354,7 @@ k8sDirectInfraConnector:
     width: "400"
 "wizardForm_webhook_pipeline.stages[0].stage.spec.infrastructure.infrastructureDefinition.spec.namespace":
     content: |-
-        Enter the target namespace in the target cluster. 
+        Enter the target namespace in the target cluster.
 
         The namespace must already exist during deployment. Harness will not create a new namespace using the one you entered here. [Learn More](https://ngdocs.harness.io/article/0ud2ut4vt2)
     width: "400"
@@ -2411,7 +2417,7 @@ wizardForm_webhook_spec.provisionerIdentifier:
     width: "400"
 wizardForm_webhook_spec.workload:
     content: |-
-        Enter the name of the resource to scale in the format `[namespace/]Kind/Name`, with `namespace` optional. For example: 
+        Enter the name of the resource to scale in the format `[namespace/]Kind/Name`, with `namespace` optional. For example:
 
         ```
         default/Deployment/harness-example
@@ -2419,7 +2425,7 @@ wizardForm_webhook_spec.workload:
 
         You can scale a Deployment, DaemonSet, or StatefulSet.
 
-        You can only enter one resource in **Workload**. To scale another resource, add another **K8s Scale** step. 
+        You can only enter one resource in **Workload**. To scale another resource, add another **K8s Scale** step.
 
         [Learn More](https://ngdocs.harness.io/article/jxe5z9domw)
     width: "400"
@@ -2428,7 +2434,7 @@ wizardForm_webhook_spec.workload:
     width: "400"
 "wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[2].step.spec.provisionerIdentifier":
     content: |-
-        The **Provisioner Identifier** identifies the provisioning applied in this step. 
+        The **Provisioner Identifier** identifies the provisioning applied in this step.
 
         - If you selected **Inherit from Plan** in **Configuration Type**, enter the Id used by the **Terraform Plan** step for the plan you want to apply.
 
@@ -2447,7 +2453,7 @@ wizardForm_webhook_spec.workload:
     width: "400"
 "wizardForm_webhook_pipeline.stages[0].stage.spec.execution.steps[2].parallel[3].step.spec.provisionerIdentifier":
     content: |-
-        Enter a unique string to identify the provisioning configured in this step. 
+        Enter a unique string to identify the provisioning configured in this step.
 
         You will use this **Provisioner Identifier** in additional steps to refer to the provisioning set up in this step.
 
@@ -2461,15 +2467,15 @@ wizardForm_webhook_spec.workload:
     width: "400"
 pipelineStep.infrastructureDefinition:
     content: |-
-        Infrastructure Definitions represent the physical infrastructure of the Environment. They are the actual clusters, hosts, etc. 
+        Infrastructure Definitions represent the physical infrastructure of the Environment. They are the actual clusters, hosts, etc.
 
         For example, the target Infrastructure Definition for a Kubernetes deployment. [Learn More](https://ngdocs.harness.io/article/0ud2ut4vt2)
     width: "400"
 pipelineStep.infrastructureDefinitionMethod:
     content: |-
-        There are different ways to connect to your target infrastructure: 
+        There are different ways to connect to your target infrastructure:
 
-        #### Direct Connection 
+        #### Direct Connection
         A vendor-agnostic connection to the cluster that uses a Harness [Kubernetes Cluster Connector](https://ngdocs.harness.io/article/1gaud2efd4). The Connector uses the cluster master URL and an auth method such as a Kubernetes service account or it inherits credentials from a Harness Delegate running in your infrastructure.
 
         #### Cloud Provider
@@ -2498,7 +2504,13 @@ rightBarForm_repoName:
 
     width: "400"
 rightBarForm_depth:
-    content: "**Depth** is the number of commits you want to grab when you clone. For manual triggers, Depth is set to **1** by default."
+    content: |-
+      The number of commits to fetch when Harness clones a repo.
+
+        - For manual Triggers, the default Depth is 50 (each `git clone` operation fetches the most recent 50 commits). A setting of 0 fetches all commits in the branch.
+        - For all other Trigger types, the default Depth is 0 (fetch all commits to the branch).
+
+      For details, see [https://git-scm.com/docs/git-clone](https://git-scm.com/docs/git-clone).
     width: "400"
 rightBarForm_sslVerify:
     content: Verifies your git SSL certificate verification if set True. Skips your git SSL certificate if set False.
@@ -2518,7 +2530,7 @@ helmWithHttp_chartName:
     content: |-
         Enter the name of the Helm chart for Harness to pull. Don't include the chart version. You will add that in the **Chart Version** setting. [Learn More](https://ngdocs.harness.io/article/7owpxsaqar)
 
-        If you want to provide the chart name later, you have the following options: 
+        If you want to provide the chart name later, you have the following options:
 
         - Configure this setting as a [Runtime Input](https://ngdocs.harness.io/article/f6yobn7iq0) and provide the name at runtime.
         - Configure this setting as a Runtime Input and use [Input Sets](https://ngdocs.harness.io/article/3fqwa8et3d) to provide the chart name.
@@ -2526,7 +2538,7 @@ helmWithHttp_chartName:
     width: "400"
 helmWithHttp_chartVersion:
     content: |-
-        Enter the version of the chart you want to deploy. This is found in the Chart.yaml `version` label in your chart. 
+        Enter the version of the chart you want to deploy. This is found in the Chart.yaml `version` label in your chart.
 
         You can list all available versions of a chart using the `search repo` command with the `--versions` option. See [helm search repo](https://helm.sh/docs/helm/helm_search_repo) from Helm.
 
@@ -2539,7 +2551,7 @@ helmWithHttp_helmVersion:
     width: "450"
 helmWithHttp_skipResourceVersioning:
     content: |-
-        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters. 
+        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters.
 
         In some cases, such as when using public manifests or Helm charts, you cannot add the annotation.
 
@@ -2590,13 +2602,13 @@ listenOnNewArtifactManifest:
     content: |
         ### On New Manifest Triggers
 
-        Harness will listen on the manifest (Helm Chart) that you select. When a new version of the manifest is added to its repo, the Trigger will execute this Pipeline. 
+        Harness will listen on the manifest (Helm Chart) that you select. When a new version of the manifest is added to its repo, the Trigger will execute this Pipeline.
 
         For example, see [Helm Chart Triggers](https://ngdocs.harness.io/article/54eqk0d1bd).
 
         **Note:** if this setting is not enabled, it is because the version setting in the **Service Definition** is not a [Runtime Input](https://ngdocs.harness.io/article/f6yobn7iq0) (`<+input>`). For example, for a Helm Chart package in **Service Definition**, the **Chart Version** setting must be `<+input>`.
-         
-         
+
+
         ![Chart Version](https://files.helpdocs.io/i5nl071jo5/articles/7oml3zx0fw/1648509593378/clean-shot-2022-03-28-at-16-19-11.png)
 
         ---
@@ -2621,14 +2633,14 @@ artifactManifestConditions:
     width: "400"
 version:
     content: |-
-        Enter the condition that must be matched in order for the Trigger to execute. 
+        Enter the condition that must be matched in order for the Trigger to execute.
 
-        You can use wildcards in the condition's value and you can select **Regex** and use regular expressions. 
+        You can use wildcards in the condition's value and you can select **Regex** and use regular expressions.
 
-        For example, if a build is todolist-v2.0: 
+        For example, if a build is todolist-v2.0:
 
-        - With Regex **not selected**, both `todolist*` or `*olist*` will match. 
-        - With Regex selected, the regex `todolist-v\d.\d` will match. 
+        - With Regex **not selected**, both `todolist*` or `*olist*` will match.
+        - With Regex selected, the regex `todolist-v\d.\d` will match.
 
         The same Regex and wildcard formatting applies to manifests, artifacts, or whatever Trigger type you are creating.
 
@@ -2651,7 +2663,7 @@ triggerConfigurationLabel:
     width: "400"
 wizardForm_webhook_identifier:
     content: |-
-        Harness entities and resources use a unique Id (entity identifier) that's immutable once the entity is created. 
+        Harness entities and resources use a unique Id (entity identifier) that's immutable once the entity is created.
 
         Identifiers provide a permanent way to refer to an entity and avoid issues that can arise when a name is changed.
 
@@ -2693,15 +2705,15 @@ changedFiles:
     width: "400"
 headerConditions:
     content: |-
-        Enter the header attribute for comparison. 
+        Enter the header attribute for comparison.
 
-        The header expression format is `<+trigger.header['key-name']>`. 
+        The header expression format is `<+trigger.header['key-name']>`.
 
         For example `<+trigger.header['X-GitHub-Event']>`.
 
         <img src="https://files.helpdocs.io/i5nl071jo5/articles/hndnde8usz/1624919275031/clean-shot-2021-06-28-at-15-27-08.png" width="95%" height="95%">
 
-        **Notes:** 
+        **Notes:**
         - When Harness evaluates the header key you enter, the comparison is case insensitive.
         - Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
         - If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty.
@@ -2718,7 +2730,7 @@ payloadConditions:
 
         <img src="https://files.helpdocs.io/i5nl071jo5/articles/hndnde8usz/1624919275031/clean-shot-2021-06-28-at-15-27-08.png" width="95%" height="95%">
 
-        **Notes:** 
+        **Notes:**
         - Conditions are ANDed together (boolean AND operation). All Conditions must match an event payload for it to execute the Trigger.
         - If you want to use OR, NOT or other operators across the payload, simply use **JEXL Condition** and leave the rest empty.
 
@@ -2741,7 +2753,7 @@ expressionBreakdown:
     width: "400"
 schedulePanel:
     content: |-
-        Use the settings to schedule the Trigger. 
+        Use the settings to schedule the Trigger.
 
         You can use the schedule options to define the Cron expression or type in a Cron expression of your own and see how it evaluates. [Learn More](https://ngdocs.harness.io/article/4z9mf24m1b)
     width: "400"
@@ -2908,7 +2920,7 @@ selectPerspective_type:
     width: "400"
 growthRateCheckbox:
     content: |
-        To add growth rate to your budgeted amount, select the checkbox Add growth rate to budget amount. Growth rate refers to the percentage change of the budgeted amount within the specified time period. When you've decided to add growth rate to the budget amount, specify the growth rate percentage. 
+        To add growth rate to your budgeted amount, select the checkbox Add growth rate to budget amount. Growth rate refers to the percentage change of the budgeted amount within the specified time period. When you've decided to add growth rate to the budget amount, specify the growth rate percentage.
 
 
         In Specify Growth rate, enter the percentage of the growth rate to the budget amount. You can view the increased amount of your budget in the graph. The graph displays the amount and budget period.
@@ -2926,7 +2938,7 @@ helmWithGit_identifier:
     width: "400"
 helmWithGit_repoName:
     content: |-
-        If you selected an account in the Git Connector, then you need to specify the repo here. 
+        If you selected an account in the Git Connector, then you need to specify the repo here.
 
         Put the full repo path, such as `https://github.com/myorg/reponame.git` if you selected `HTTP` in the Connector or `git@github.com:myorg/reponame.git` if you selected `SSH` in the Connector. [Learn More](https://ngdocs.harness.io/article/tbm2hw6pr6-git-connector-settings-reference)
     width: "400"
@@ -2944,7 +2956,7 @@ helmWithGit_helmVersion:
     width: "400"
 helmWithGit_skipResourceVersioning:
     content: |-
-        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters. 
+        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters.
 
         In some cases, such as when using public manifests or Helm charts, you cannot add the annotation.
 
@@ -2969,7 +2981,7 @@ helmWithGit_commandFlags:
     width: "400"
 helmWithGit_branch:
     content: |-
-        Enter the branch or commit ID for the repo. 
+        Enter the branch or commit ID for the repo.
 
         For **Specific Commit ID**, you can also use a [Git commit tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
     width: "400"
@@ -2989,7 +3001,7 @@ helmWithS3_chartName:
     content: |-
         Enter the name of the Helm chart for Harness to pull. Don't include the chart version. You will add that in the **Chart Version** setting. [Learn More](https://ngdocs.harness.io/article/7owpxsaqar)
 
-        If you want to provide the chart name later, you have the following options: 
+        If you want to provide the chart name later, you have the following options:
 
         - Configure this setting as a [Runtime Input](https://ngdocs.harness.io/article/f6yobn7iq0) and provide the name at runtime.
         - Configure this setting as a Runtime Input and use [Input Sets](https://ngdocs.harness.io/article/3fqwa8et3d) to provide the chart name.
@@ -2997,7 +3009,7 @@ helmWithS3_chartName:
     width: "400"
 helmWithS3_chartVersion:
     content: |-
-        Enter the version of the chart you want to deploy. This is found in the Chart.yaml `version` label in your chart. 
+        Enter the version of the chart you want to deploy. This is found in the Chart.yaml `version` label in your chart.
 
         You can list all available versions of a chart using the `search repo` command with the `--versions` option. See [helm search repo](https://helm.sh/docs/helm/helm_search_repo) from Helm.
 
@@ -3010,7 +3022,7 @@ helmWithS3_helmVersion:
     width: "400"
 helmWithS3_skipResourceVersioning:
     content: |-
-        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters. 
+        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters.
 
         In some cases, such as when using public manifests or Helm charts, you cannot add the annotation.
 
@@ -3047,7 +3059,7 @@ helmWithGcs_chartName:
     content: |-
         Enter the name of the Helm chart for Harness to pull. Don't include the chart version. You will add that in the **Chart Version** setting. [Learn More](https://ngdocs.harness.io/article/7owpxsaqar)
 
-        If you want to provide the chart name later, you have the following options: 
+        If you want to provide the chart name later, you have the following options:
 
         - Configure this setting as a [Runtime Input](https://ngdocs.harness.io/article/f6yobn7iq0) and provide the name at runtime.
         - Configure this setting as a Runtime Input and use [Input Sets](https://ngdocs.harness.io/article/3fqwa8et3d) to provide the chart name.
@@ -3055,7 +3067,7 @@ helmWithGcs_chartName:
     width: "400"
 helmWithGcs_chartVersion:
     content: |-
-        Enter the version of the chart you want to deploy. This is found in the Chart.yaml `version` label in your chart. 
+        Enter the version of the chart you want to deploy. This is found in the Chart.yaml `version` label in your chart.
 
         You can list all available versions of a chart using the `search repo` command with the `--versions` option. See [helm search repo](https://helm.sh/docs/helm/helm_search_repo) from Helm.
 
@@ -3068,7 +3080,7 @@ helmWithGcs_helmVersion:
     width: "400"
 helmWithGcs_skipResourceVersioning:
     content: |-
-        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters. 
+        By default, Harness versions ConfigMaps and Secrets deployed into Kubernetes clusters.
 
         In some cases, such as when using public manifests or Helm charts, you cannot add the annotation.
 
@@ -3097,7 +3109,7 @@ gcrImagePath_registryHostname:
     width: "400"
 gcrImagePath_imagePath:
     content: |-
-        Enter the name of the artifact you want to deploy. 
+        Enter the name of the artifact you want to deploy.
 
         Images in repos need to reference a path starting with the project ID that the artifact is in, for example: `myproject-id/image-name`.
     width: "400"
@@ -3105,7 +3117,7 @@ gcrImagePath_tag:
     content: |-
         Enter the GCR image tag for the image.
 
-        If you use a Runtime Input, you can select the GCR image tag when you run this Pipeline. 
+        If you use a Runtime Input, you can select the GCR image tag when you run this Pipeline.
     width: "400"
 ecrArtifact_identifier:
     content: Enter a name that identifies this artifact.
@@ -3115,7 +3127,7 @@ ecrArtifact_region:
     width: "400"
 ecrArtifact_imagePath:
     content: |-
-        Enter the name of the artifact you want to deploy. 
+        Enter the name of the artifact you want to deploy.
 
         Often, images in repos need to reference a path, for example: `app/myImage`.
     width: "400"
@@ -3127,7 +3139,7 @@ artifactConnForm_connectorId:
         Select or add a cloud Connector to connect Harness with your cloud registry. For example, an AWS Elastic Container Registry (ECR) or Google Container Registry (GCR).
 
           - **AWS ECR:** The IAM role you use for this Connector must have the `AmazonEC2ContainerRegistryReadOnly` policy to pull images from ECR and the `AmazonEC2ContainerRegistryFullAccess` policy to push images to ECR. [Learn More](https://ngdocs.harness.io/article/m5vkql35ca-aws-connector-settings-reference)
-          - **GCR**: The IAM roles required for this Connector are `Storage Object Viewer (roles/storage.objectViewer)` and `Storage Object Admin (roles/storage.objectAdmin)`. [Learn More](https://ngdocs.harness.io/article/yykfduond6-gcs-connector-settings-reference) 
+          - **GCR**: The IAM roles required for this Connector are `Storage Object Viewer (roles/storage.objectViewer)` and `Storage Object Admin (roles/storage.objectAdmin)`. [Learn More](https://ngdocs.harness.io/article/yykfduond6-gcs-connector-settings-reference)
 
         CD Pipelines typically pull from registries only. CI Pipelines typically pull and push with registries.
     width: "400"
@@ -3186,7 +3198,7 @@ ciEcrStep_spec.tags:
     content: |-
         Specify one or more [tags](https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t) for the Docker image.
 
-        Each tag should added separately. 
+        Each tag should added separately.
 
         Click **Add** to add each tag separately.
     width: "600"
@@ -3206,7 +3218,7 @@ ciGcrStep_spec.tags:
     content: |-
         Specify one or more [tags](https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t) for the Docker image.
 
-        Each tag should added separately. 
+        Each tag should added separately.
 
         Click **Add** to add each tag separately.
     width: "400"
@@ -3232,7 +3244,7 @@ dockerHubStep_spec.tags:
     content: |-
         Specify one or more [tags](https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t) for the Docker image.
 
-        Each tag should added separately. 
+        Each tag should added separately.
 
         Click **Add** to add each tag separately.
     width: "400"
@@ -3335,7 +3347,7 @@ ciRunTests_spec.preCommand:
     width: "400"
 ciRunTests_spec.postCommand:
     content: |-
-        Enter the commands used for cleaning up the environment after running the tests. 
+        Enter the commands used for cleaning up the environment after running the tests.
 
         For example, if you enter `sleep 600` this script suspends the process for 600 seconds.
     width: "400"
@@ -3353,9 +3365,9 @@ ciRunTests_spec.outputVariables:
     width: "400"
 Plugin_stepName_StepConfig:
     content: |-
-        Plugins are Docker containers that perform predefined tasks. 
+        Plugins are Docker containers that perform predefined tasks.
 
-        Plugins are configured as steps in your stage. 
+        Plugins are configured as steps in your stage.
 
         Plugins can be used to deploy code, publish artifacts, send notifications, and more. [Learn More](https://ngdocs.harness.io/article/8r5c3yvb8k)
     width: "400"
@@ -3428,7 +3440,7 @@ pipelineCreate_tags:
     width: "400"
 "wizardForm_artifacts_stages[0].stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary.spec.tag":
     content: |-
-        Provide values for any Runtime inputs you have in your artifact settings. 
+        Provide values for any Runtime inputs you have in your artifact settings.
 
         The `<+trigger.artifact.build>` expression is used for **Tag** to ensure that the new artifact version that executed the Trigger is used for the deployment. [Learn More](https://ngdocs.harness.io/article/c1eskrgngf)
     width: "400"

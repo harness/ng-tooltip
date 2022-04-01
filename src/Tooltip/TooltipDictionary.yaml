@@ -1388,22 +1388,24 @@ Verify_stepName_StepConfig: |-
     - Apply machine learning to every deployment to identify and flag anomalies in future deployments.
 
     [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
-cvData_name: Enter a name for this step.
-cvData_timeout: |-
-    Enter a timeout for this step. 
+cvData_name:
+    content: Enter a name for the Verify step.
+    width: "400"
+cvData_timeout:
+    content: |-
+        Enter a timeout value for this step. You can use the following:
 
-    You can use:
+        - `w`  for weeks
+        - `d`  for days
+        - `h`  for hours
+        - `m`  for minutes
+        - `s`  for seconds
+        - `ms`  for milliseconds
 
-    - `w`  for weeks
-    - `d`  for days
-    - `h`  for hours
-    - `m`  for minutes
-    - `s`  for seconds
-    - `ms`  for milliseconds
+        The maximum is `53w`.
 
-    The maximum is `53w`.
-
-    Timeouts can be set at the Pipeline level also.
+        [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp-verify-deployments-with-the-verify-step#step_2_enter_a_name_and_timeout)
+    width: "400"
 cvData_spec.type: |-
     Select a type that matches your deployment strategy.
 
@@ -1414,34 +1416,15 @@ cvData_spec.type: |-
     Typically, **Load Test** is used in lower environments like QA where there is no continuous load and the deployments are usually verified by generating load via scripts, etc.
 
     [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
-cvData_spec.monitoredServiceRef: |-
-    Click **Click to autocreate a monitored service**.
-
-    Harness automatically creates a Monitored Service using a concatenation of the Service and Environment names. 
-
-    For example, a Service named `todolist` and an Environment named `dev` will result in a Monitored Service named `todolist_dev`.
-
-    If the stage Service or Environment settings are [Runtime Inputs](https://ngdocs.harness.io/article/f6yobn7iq0), the Monitored Service and Health Sources settings will show up in the Runtime Input settings when you run the Pipeline.
-
-    [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
-cvData_spec.spec.sensitivity: |-
-    Select the risk level that will be used as failure criteria during the deployment. 
-
-    When the criteria are met, the **Failure Strategy** for the stage or step is executed.
-
-    For time-series analysis (APM), the risk level is determined using standard deviations, as follows: `5𝞼` (sigma) represents high risk, `4𝞼` represents medium risk, and `3𝞼` or below represents low risk.
-
-    Harness also takes into account the number of points that deviated: 50%+ is **High**, 25%-50% is **Medium**, and 25% or below is **Low**.
-
-    [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
-cvData_spec.spec.duration: |-
-    Select the number of data points Harness uses. If you enter **10 min**, Harness will take the first 10 minutes worth of the log/APM data points and analyze it. [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp)
-
-    The length of time it takes Harness to analyze the 10 min of data points depends on the number of instances being analyzed and the monitoring tool. If you have a 1000 instances, it can take some time to analyze the first 10 minutes of all of their logs/APM data points.
-
-    The recommended **Duration** is 10 minutes for logging providers and 15 minutes for APM and infrastructure providers.
-
-    Harness waits 2-3 minutes to allow enough time for the data to be sent to the verification provider before it analyzes the data. This wait time is a standard with monitoring tools. So, if you set the Duration to 10 minutes, the 10 minutes excludes the initial 2-3 minute wait, but the total sample time is 13 minutes.
+cvData_spec.monitoredServiceRef:
+    content: A Monitored Service is basically a mapping of a Harness Service to a service monitored by your APM or logging tool. Harness automatically creates a Monitored Service using a concatenation of the Service and Environment names. [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp-verify-deployments-with-the-verify-step#step_4_create_a_monitored_service)
+    width: "250"
+cvData_spec.spec.sensitivity:
+    content: In Sensitivity, you select the risk level that will be used as failure criteria during the deployment. When the criteria are met, the Failure Strategy for the stage or step is executed. [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp-verify-deployments-with-the-verify-step#step_6_select_sensitivity)
+    width: "400"
+cvData_spec.spec.duration:
+    content: Select how long you want Harness to analyze and monitor the logs/APM data points. Harness waits for 2-3 minutes to allow enough time for the data to be sent to the APM/logging tool before it analyzes the data. This wait time is a standard with monitoring tools. [Learn More](https://ngdocs.harness.io/article/3xhqq9xllp-verify-deployments-with-the-verify-step#step_7_select_duration)
+    width: "400"
 cvData_spec.spec.trafficsplit: ""
 cvData_spec.spec.deploymentTag: |-
     Use a [Harness expression](https://newdocs.helpdocs.io/article/lml71vhsim) to reference the artifact in the stage Service settings.

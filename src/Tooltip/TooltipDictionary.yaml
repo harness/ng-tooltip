@@ -3491,3 +3491,24 @@ samlProviderForm_clientId:
 samlProviderForm_clientSecret:
     content: Enter the client secret from your Azure app. [Learn more](https://ngdocs.harness.io/article/mlpksc7s6c-single-sign-on-saml#users_in_over_150_groups)
     width: "400"
+notifications.notificationMethod:
+    content: Select the Notification Method. [Learn more](https://ngdocs.harness.io/article/4bor7kyimj-notify-users-of-pipeline-events)
+    width: "400"
+configureSlackNotifications_webhookUrl:
+    content: Enter your Slack Webhook URL. [Learn more](https://ngdocs.harness.io/article/4bor7kyimj-notify-users-of-pipeline-events#option_slack_notifications)
+    width: "400"
+configureSlackNotifications_userGroups:
+    content: Select user groups to send notifications.
+    width: "400"
+configureMSTeamsNotifications_msTeamKeys:
+    content: Enter your Microsoft Teams Webhook URL. [Learn more](https://ngdocs.harness.io/article/4bor7kyimj-notify-users-of-pipeline-events#option_microsoft_teams_notifications)
+    width: "400"
+configureMSTeamsNotifications_userGroups:
+    content: Select user groups to send notifications.
+    width: "400"
+configureEmailNotifications_userGroups:
+    content: Select user groups to send notifications.
+    width: "400"
+configureEmailNotifications_emailIds:
+    content: Enter the email addresses that you want to notify. [Learn more](https://ngdocs.harness.io/article/4bor7kyimj-notify-users-of-pipeline-events#option_email_notifications)
+    width: "400"

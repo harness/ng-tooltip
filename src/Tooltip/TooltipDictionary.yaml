@@ -315,10 +315,15 @@ stepArtifactoryAuthForm_artifactoryServerUrl: |-
 
     **Note:** using `artifactory/` at the end of the URL often solves path issues.
 connectorDetailsStepFormDockerRegistry_name: Enter a name for this Connector. You will use this name to select the Connector in Pipeline steps and settings. [Learn More](https://ngdocs.harness.io/article/u9bsd77g5a)
-dockerAuthForm_dockerRegistryUrl: |-
-    Enter the URL of the Docker Registry. The Docker Registry URL for Docker Hub is `https://registry.hub.docker.com/v2/` or `https://index.docker.io/v2/`.
+dockerAuthForm_dockerRegistryUrl:
+    content: |-
+        The URL of the Docker Registry. This is usually the URL used for your [docker login](https://docs.docker.com/engine/reference/commandline/login/) credentials.
 
-    [Learn More](https://ngdocs.harness.io/article/u9bsd77g5a)
+        - To connect to Docker Hub, you can use the URLs https://registry.hub.docker.com/v2/ or https://index.docker.io/v2/. 
+        - The URL will be different if you are using a private registry.
+
+        [Learn More](https://ngdocs.harness.io/article/u9bsd77g5a)
+    width: "400"
 helmRepoAuthForm_helmRepoUrl: |-
     The URL of the chart repo. [Learn More](https://ngdocs.harness.io/article/a0jotsvsi7)
 

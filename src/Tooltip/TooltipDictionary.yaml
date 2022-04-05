@@ -3526,3 +3526,18 @@ k8DeleteData_spec.deleteResources.spec.manifestPaths:
 
         [Learn More](https://ngdocs.harness.io/article/eaj0xuegln)
     width: "500"
+portBindings:
+    content: |
+        When a Pipeline runs on an AWS build farm, some Steps might run on a bare metal VM and others run in a container. The port used to communicate with the Service Dependency depends on where the Step is running: bare-metal Steps use the Host Port and containerized Steps use the Container Port. 
+
+        Suppose you create a Service Dependency with the Name and ID **myloginservice**. 
+        - A containerized Run or Run Test step talks to the service using **myloginservice:_container_port_**. 
+        - A  step running directly on the VM talks to the service using **localhost:_host_port_**.
+
+        The binding of Host and Container Ports is similar to [port mapping in Docker](https://docs.docker.com/config/containers/container-networking/).
+
+        In a YAML Pipeline specification, the `portBindings` node specifies the Host Port (key) and Container Port (value). Usually the ports are the same unless the default Host Port for the service dependency is already in use by another local service. The YAML, the portBindings node uses the Host Port as the key and the Container Port as the value. 
+
+             portBindings:
+                “8237” : “8237”
+    width: "400"

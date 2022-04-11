@@ -152,10 +152,9 @@ imagePath_imagePath: |+
     Wildcards are not supported.
 
 imagePath_tag: Enter the Docker [image tag](https://docs.docker.com/engine/reference/commandline/tag/).
-setContainerResources: |
-    Resources limits allow setting maximum values for the resources the container is allowed to use at runtime.
-    Use **Limit Memory** to limit the memory that the container can use. Limits for memory are measured in bytes. You can express memory as a plain integer or as a fixed-point number using one of these suffixes: G, M. You can also use the power-of-two equivalents: Gi, Mi.
-    Use **Limit CPU** to limit the number of cores that the container can use. Limits for CPU resources are measured in cpu units. Fractional requests are allowed. The expression 0.1 is equivalent to the expression 100m, which can be read as **one hundred millicpu**.
+setContainerResources:
+    content: Maximum resource limits for containers that clone the codebase at runtime. See [Resource units in Kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes).
+    width: "400"
 image:
     content: |-
         The FQN (fully-qualified name) of the Docker image to use when running build commands. For example: `us.gcr.io/playground/quickstart-image`.
@@ -2511,10 +2510,18 @@ rightBarForm_repoName:
 
     width: "400"
 rightBarForm_depth:
-    content: "**Depth** is the number of commits you want to grab when you clone. For manual triggers, Depth is set to **1** by default."
+    content: |
+        The number of commits to fetch when Harness clones a repo.
+
+        - For manual Builds, when a user clicks **Build** in the Harness UI, the default Depth is 50 (each `git clone` operation fetches the most recent 50 commits). A setting of 0 fetches all commits in the branch.
+        - For triggered Builds, the default Depth is 0 (fetch all commits to the branch).
+
+        For details, see [https://git-scm.com/docs/git-clone](https://git-scm.com/docs/git-clone).
     width: "400"
 rightBarForm_sslVerify:
-    content: Verifies your git SSL certificate verification if set True. Skips your git SSL certificate if set False.
+    content: |-
+        If True (the default), the Pipeline verifies your Git SSL certificates. The build fails if the certificate check fails. You should set this to False only if you have a known issue with the certificate and are willing to run your builds anyway.
+        You can use self-signed certificates in your build infrastructure. [Learn more](https://ngdocs.harness.io/article/e5qkn9atiw)
     width: "400"
 manifestStore_connectorRef:
     content: |-
@@ -3698,4 +3705,35 @@ dependencyBase_spec.portBindings:
         - A  Run or Run Test step that runs directly on the VM talks to the service using **localhost:_host_port_**.
 
         The binding of Host and Container Ports is similar to [port mapping in Docker](https://docs.docker.com/config/containers/container-networking/). Usually the ports are the same unless the default Host Port for the service dependency is already in use by another local service. 
+    width: "400"
+depth:
+    content: |
+        The number of commits to fetch when Harness clones a repo.
+
+        - For manual Builds, when a user clicks **Build** in the Harness UI, the default Depth is 50 (each `git clone` operation fetches the most recent 50 commits). A setting of 0 fetches all commits in the branch.
+        - For triggered Builds, the default Depth is 0 (fetch all commits to the branch).
+
+        For details, see [https://git-scm.com/docs/git-clone](https://git-scm.com/docs/git-clone).
+    width: "400"
+prCloneStrategy:
+    content: |
+        When a build is triggered by a pull request, this setting determines the branch to use for the artifact after the build process clones the repo.
+
+        - If **Merge Commit** (the default) is selected, the Pipeline tries to merge the Pull Request branch with the target branch before building the artifact. The artifact includes all PR and target commits, but builds can take longer and result in build failures.
+        - If **Source Branch** is selected, the Pipeline builds the artifact from the latest commit in the Pull Request branch. Builds can be faster and less likely to result in build failures, but the artifacts might not include some target-branch commits.
+
+        [Learn more](https://ngdocs.harness.io/article/mozd8b49td)
+    width: "400"
+rightBarForm_memoryLimit:
+    content: Maximum memory that the container can use. You can specify an integer or fixed-point value with the suffix G, M, Gi, or Mi. Default is 500Mi.
+    width: "400"
+rightBarForm_cpuLimit:
+    content: |
+        Maximum number of cores that the container can use. CPU resource limits are measured in CPU units. You can specify a fraction as well. 0.1 is equivalent to 100m, or 100 millicpu. Default is 400m.
+    width: "400"
+sslVerify:
+    content: |+
+        If True (the default), the Pipeline verifies your Git SSL certificates. The build fails if the certificate check fails. You should set this to False only if you have a known issue with the certificate and are willing to run your builds anyway.
+        You can use self-signed certificates in your build infrastructure. [Learn more](https://ngdocs.harness.io/article/e5qkn9atiw)
+
     width: "400"

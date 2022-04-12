@@ -3736,3 +3736,21 @@ sslVerify:
         You can use self-signed certificates in your build infrastructure. [Learn more](https://ngdocs.harness.io/article/e5qkn9atiw)
 
     width: "400"
+Policy_stepName_StepConfig:
+    content: Use this step to add Policy Set evaluations to your Stage. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_name:
+    content: Enter a name for this Policy Step. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_timeout:
+    content: Enter how long this step should run before timing out.
+    width: "400"
+policyStepForm_spec.type:
+    content: Select the entity type that this Policy Set evaluation applies to. A **Custom** type a free form. You can add any evaluate any JSON. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_spec.policySets:
+    content: Select the Policy Set to use for this step's evaluation. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_spec.policySpec.payload:
+    content: Enter the payload to be evaluated by the Policy Set(s) you selected in **Policy Set**. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"

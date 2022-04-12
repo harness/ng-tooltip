@@ -182,10 +182,9 @@ imageName: The name of the image that will be pushed to the target container reg
 gcsBucket:
     content: Enter the source GCS bucket name. [Learn More](https://cloud.google.com/storage/docs/creating-buckets)
     width: "400"
-sourcePath: |-
-    Path to the artifact file/folder you want to upload.
-    You can use regex to upload multiple files.
-    Harness will automatically create the compressed file.
+sourcePath:
+    content: "Path to the artifact files you want to upload. You can use standard [glob expressions](https://en.wikipedia.org/wiki/Glob_(programming)) to upload multiple files. For example, `src/js/**/*.js` will upload all Javascript files in `src/js/subfolder-1/`, `src/js/subfolder-2`, and so on. "
+    width: "400"
 gcsS3Target: The path to store the cache in, relatively to the bucket. If not provided the cache will be save to [bucket]/
 restoreCacheKey:
     content: |-

@@ -3746,7 +3746,7 @@ policyStepForm_timeout:
     content: Enter how long this step should run before timing out.
     width: "400"
 policyStepForm_spec.type:
-    content: Select the entity type that this Policy Set evaluation applies to. A **Custom** type is free form. You can add evaluate any JSON. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    content: Select the entity type that this Policy Set evaluation applies to. A **Custom** type is free form. It can evaluate any JSON. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
     width: "400"
 policyStepForm_spec.policySets:
     content: Select the Policy Set to use for this step's evaluation. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)

@@ -242,7 +242,7 @@ runTestsBuildTool:
     content: "Select the build automation tool. "
     width: "400"
 runTestsLanguage:
-    content: Select the programming language of the source code to build, such as Java or Csharp.
+    content: "Select the programming language of the source code to build. If the language is not listed in this menu, test your code using a [Run Step](https://ngdocs.harness.io/article/ota4xj59le) instead. "
     width: "400"
 runTestsPackages:
     content: |-

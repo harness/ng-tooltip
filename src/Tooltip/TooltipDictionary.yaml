@@ -182,10 +182,9 @@ imageName: The name of the image that will be pushed to the target container reg
 gcsBucket:
     content: Enter the source GCS bucket name. [Learn More](https://cloud.google.com/storage/docs/creating-buckets)
     width: "400"
-sourcePath: |-
-    Path to the artifact file/folder you want to upload.
-    You can use regex to upload multiple files.
-    Harness will automatically create the compressed file.
+sourcePath:
+    content: "Path to the artifact files you want to upload. You can use standard [glob expressions](https://en.wikipedia.org/wiki/Glob_(programming)) to upload multiple files. For example, `src/js/**/*.js` will upload all Javascript files in `src/js/subfolder-1/`, `src/js/subfolder-2`, and so on. "
+    width: "400"
 gcsS3Target: The path to store the cache in, relatively to the bucket. If not provided the cache will be save to [bucket]/
 restoreCacheKey:
     content: |-
@@ -243,7 +242,7 @@ runTestsBuildTool:
     content: "Select the build automation tool. "
     width: "400"
 runTestsLanguage:
-    content: Select the programming language of the source code to build, such as Java or Csharp.
+    content: Select the programming language of the source code you want to test. If the language is not listed in this menu, test your code using a Run Step instead.
     width: "400"
 runTestsPackages:
     content: |-
@@ -3736,4 +3735,22 @@ sslVerify:
         If True (the default), the Pipeline verifies your Git SSL certificates. The build fails if the certificate check fails. You should set this to False only if you have a known issue with the certificate and are willing to run your builds anyway.
         You can use self-signed certificates in your build infrastructure. [Learn more](https://ngdocs.harness.io/article/e5qkn9atiw)
 
+    width: "400"
+Policy_stepName_StepConfig:
+    content: Use this step to add Policy Set evaluations to your Stage. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_name:
+    content: Enter a name for this Policy Step. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_timeout:
+    content: Enter how long this step should run before timing out.
+    width: "400"
+policyStepForm_spec.type:
+    content: Select the entity type that this Policy Set evaluation applies to. A **Custom** type is free form. It can evaluate any JSON. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_spec.policySets:
+    content: Select the Policy Set to use for this step's evaluation. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
+    width: "400"
+policyStepForm_spec.policySpec.payload:
+    content: Enter the payload to be evaluated by the Policy Set(s) you selected in **Policy Set**. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
     width: "400"

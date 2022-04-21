@@ -3754,3 +3754,9 @@ policyStepForm_spec.policySets:
 policyStepForm_spec.policySpec.payload:
     content: Enter the payload to be evaluated by the Policy Set(s) you selected in **Policy Set**. [Learn More](https://ngdocs.harness.io/article/xy8zsn8fa3)
     width: "400"
+ciRunStep_spec.reportPaths:
+    content: |+
+        The path to the file(s) that store results in the JUnit XML format. Regex is supported.
+        This variable **must** be set for the Step to publish test results.
+
+    width: "400"

@@ -3758,5 +3758,4 @@ ciRunStep_spec.reportPaths:
     content: |+
         The path to the file(s) that store results in the JUnit XML format. Regex is supported.
         This variable **must** be set for the Step to publish test results.
-
     width: "400"

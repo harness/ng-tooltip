@@ -1577,14 +1577,20 @@ githubConnectionType:
 
         [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
     width: "400"
-githubDetailsStepForm_url: |-
-    The GitHub URL is the URL for a Git org or repo. Ensure that it matches the **Connection Type** option you selected.
+githubDetailsStepForm_url:
+    content: |-
+        The GitHub URL is the URL for a Git org or repo. Ensure that it matches the **Connection Type** option you selected.
 
-    - If you selected **Git Repository** in **URL Type**, enter the full URL for the repo, such as `https://github.com/org-name/repo-name`.
+        - If you selected **Git Repository** in **URL Type**, enter the full URL for the repo. Examples: 
+             - `https://github.com/org-name/repo-name` (HTTP)
+             - `git@github.com:org-name/repo-name`(SSH).
 
-    - If you selected **Git Account** in **URL Type**, enter the URL without the repo name, like `https://github.com/org-name`. When you use this Connector in a Harness setting you will be prompted to provide a repo name.
+        - If you selected **Git Account** in **URL Type**, enter the URL without the repo name (you will provide this when you use the Connector). Examples:
+             - `https://github.com/org-name`(HTTP)
+             - `git@github.com:org-name`(SSH)
 
-    [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
+        [Learn More](https://ngdocs.harness.io/article/v9sigwjlgo)
+    width: "400"
 githubDetailsStepForm_validationRepo: Enter a repo name in your GitHub account.
 githubAuthentication: |-
     Enter the credentials for the org or repo you selected.

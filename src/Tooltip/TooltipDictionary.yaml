@@ -161,7 +161,9 @@ image:
 
         The image name should include the tag and will default to the latest tag if unspecified. You can use any Docker image from any Docker registry, including Docker images from private registries. [Learn More](https://ngdocs.harness.io/article/1i1ttvftm4)
     width: "400"
-privileged: Enable this option to run the container with escalated privileges. This is the equivalent of running a container with the Docker --privileged flag.
+privileged:
+    content: "Run all containers with the Docker `--privileged` flag enabled. This option is disabled by default. You can override this setting in individual Run and Run Tests steps. "
+    width: "400"
 optimize: Enables redo snapshot mode
 dockerfile: If not provided assumed to be in the root folder of the codebase
 context: Context represents a directory containing a Dockerfile which kaniko will use to build your image. For example, a COPY command in your Dockerfile should refer to a file in the build context.
@@ -2117,7 +2119,9 @@ shell: |-
     Select your preferred shell script.
     - **Bash**
     - **Shell**
-runAsUser: The **runAsUser** field specifies that all processes run with the user ID for any containers in the pod. Set the value to specify the user id for all processes in the pod. A typical example of  **runAsUser** field entry would be 1000.
+runAsUser:
+    content: Run with this user Id for all containers in the pod.  A typical example of a Run as User value would be 1000. To override this default, set Run as User in individual Steps.
+    width: "400"
 ccmOverviewTitle: |-
     Harness Cloud Cost Management (CCM) is an intelligent cloud cost management solution for FinOps, Infrastructure, and Engineering teams. Harness CCM provides:
 
@@ -2855,7 +2859,7 @@ kustomizePath_paths:
         **Important:** You cannot use Harness [variables](https://ngdocs.harness.io/article/lml71vhsim) in the base manifest or kustomization.yaml. You can only use Harness variables in kustomize patches you add here in Kustomize Patches **Manifest Details**.
     width: "400"
 ciBuildInfra_serviceAccountName:
-    content: Enter the Kubernetes Service Account name. [Learn More](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+    content: The Service Account for Step containers to use when communicating with the Kubernetes API server. Leave blank to use the default service account for the namespace. [Learn More](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
     width: "400"
 ciRunStep_timeout:
     content: The default **Timeout** limit for the step is **10 minutes**. The Step fails when the Timeout is reached, and the Pipeline execution continues.
@@ -3800,4 +3804,36 @@ artifactoryArtifact_tag:
     width: "400"
 imagePath_version:
     content: Enter your Artifact version. [Learn More](https://ngdocs.harness.io/article/4ifq51cp0i)
+    width: "400"
+serviceAccountName:
+    content: ""
+    width: "400"
+automountServiceAccountToken:
+    content: By default, k8s mounts a token for the Service Account when it creates a pod, which enables the pod to communicate with the k8s API server. When this option is disabled, the service account token will not get mounted.
+    width: "400"
+priorityClassName:
+    content: |-
+        The PriorityClass of the Stage pod in case resources run out on the host node. 
+
+
+        Enter the name of a PriorityClass defined in your build infrastructure. You can also enter the predefined classes `system-cluster-critical` or `system-node-critical`, which ensure that the Stage is always scheduled first.
+
+
+        If you leave this field blank, the PriorityClass will be the `globalDefault` (if your infrastructure has one defined) or 0, which is lowest priority. [Learn more](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass)
+    width: "400"
+allowPrivilegeEscalation:
+    content: When enabled, a process can gain more privileges than its parent process. This setting determines whether the `no_new_privs` flag gets set on the container process.
+    width: "400"
+ciBuildInfra_addCapabilities:
+    content: Set the `DefaultAddCapabilities` option in Kubernetes, which defines the list of capabilities to add to each Step by default. [Learn more](https://kubernetes.io/docs/concepts/security/pod-security-policy/#capabilities)
+    width: "400"
+ciBuildInfra_dropCapabilities:
+    content: Set the `RequiredDropCapabilities` option in Kubernetes, which defines the list of capabilities to drop from each Step. [Learn more](https://kubernetes.io/docs/concepts/security/pod-security-policy/#capabilities)
+    width: "400"
+runAsNonRoot:
+    content: |
+        Run all Steps as a non-root User. To specify a default User Id for all containers, set the Run as User field.
+    width: "400"
+readOnlyRootFilesystem:
+    content: Run all Steps with a read-only root filesystem, with no writable layer.
     width: "400"

@@ -2865,10 +2865,10 @@ ciRunStep_timeout:
     content: The default **Timeout** limit for the step is **10 minutes**. The Step fails when the Timeout is reached, and the Pipeline execution continues.
     width: "400"
 limitMemory:
-    content: "The default **Limit Memory** value is **500 MiB** if not specified explicitly. "
+    content: Maximum memory that the container can use. You can specify an integer or fixed-point value with the suffix G, M, Gi, or Mi. Do not include spaces when entering a fixed value. Default is **500Mi**.
     width: "400"
 limitCPULabel:
-    content: The default **CPU** value is **400 m**  if not specified explicitly.
+    content: Maximum number of cores that the container can use. CPU resource limits are measured in CPU units. You can specify a fraction as well. 0.1 is equivalent to 100m, or 100 millicpu. Do not include spaces when entering a fixed value. Default is **400m**.
     width: "400"
 ciRunTests_timeout:
     content: The default **Timeout** for the CI step is **10 minutes**. The Step fails when the Timeout is reached, and the Pipeline execution continues.

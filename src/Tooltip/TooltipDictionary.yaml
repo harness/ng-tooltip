@@ -3837,3 +3837,76 @@ runAsNonRoot:
 readOnlyRootFilesystem:
     content: Run all Steps with a read-only root filesystem, with no writable layer.
     width: "400"
+ciBuildInfra_volumes:
+    content: A list of the volumes you want to mount onto the pod running the Stage.
+    width: "400"
+ciBuildInfra_volumes.0.mountPath:
+    content: The volume path for Step containers.
+    width: "400"
+ciBuildInfra_volumes.0.type:
+    content: |-
+        The type of volume you want to mount. Select one of the following:
+
+        * **Empty Directory:** Mount a new [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume that gets deleted when the Stage finishes execution.
+
+        * **Host Path:** Mount a file or folder from the host node filesystem. It is good practice to avoid hostPath volumes in most cases. See [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) in the 
+        Kubernetes docs.
+
+        * **Persistent Volume Claim:** Mount a [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) using a predefined Persistent Volume Claim.
+    width: "400"
+ciBuildInfra_volumes.1.type:
+    content: |-
+        The type of volume you want to mount. Select one of the following:
+
+        * **Empty Directory:** Mount a new [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume that gets deleted when the Stage finishes execution.
+
+        * **Host Path:** Mount a file or folder from the host node filesystem. It is good practice to avoid hostPath volumes in most cases. See [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) in the 
+        Kubernetes docs.
+
+        * **Persistent Volume Claim:** Mount a [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) using a predefined Persistent Volume Claim.
+    width: "400"
+ciBuildInfra_volumes.2.type:
+    content: |-
+        The type of volume you want to mount. Select one of the following:
+
+        * **Empty Directory:** Mount a new [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume that gets deleted when the Stage finishes execution.
+
+        * **Host Path:** Mount a file or folder from the host node filesystem. It is good practice to avoid hostPath volumes in most cases. See [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) in the 
+        Kubernetes docs.
+
+        * **Persistent Volume Claim:** Mount a [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) using a predefined Persistent Volume Claim.
+    width: "400"
+ciBuildInfra_volumes.0.spec.medium:
+    content: The storage medium for the volume. Leave blank to use the default medium for the host node, or enter `memory` to mount a tmpfs (RAM-backed filesystem) on the host node.
+    width: "400"
+ciBuildInfra_volumes.0.spec.size:
+    content: |-
+        Maximum memory that the volume can use. You can express memory as a plain integer or as a fixed-point number using the suffixes `G` or `M`. You can also use the power-of-two equivalents `Gi`and `Mi`. Do not include spaces in the string (`5Mi` not `5 Mi`).
+
+
+        If not specified, the volume can use up to 50% of available memory on the host node.
+    width: "400"
+ciBuildInfra_volumes.1.mountPath:
+    content: The volume path for Step containers.
+    width: "400"
+ciBuildInfra_volumes.1.spec.path:
+    content: The volume path on the host node.
+    width: "400"
+ciBuildInfra_volumes.1.spec.type:
+    content: To apply a precheck on the specified path before mounting the volume, enter a supported value such as `FileOrCreate`. Leave blank to skip any prechecks before mounting.
+    width: "400"
+mountPath:
+    content: The volume path for Step containers.
+    width: "400"
+ciBuildInfra_volumes.2.spec.claimName:
+    content: Name of a PVC defined in your build infrastructure.
+    width: "400"
+readOnly:
+    content: Mount the volume in read-only mode.
+    width: "400"
+ciBuildInfra_nodeSelector:
+    content: A list of [nodeSelectors](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) that specify the set of candidate nodes based on your Stage pod requirements.
+    width: "400"
+ciBuildInfra_tolerations:
+    content: A list of [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) that allow (but do not require) the pods to schedule onto nodes with matching taints.
+    width: "400"

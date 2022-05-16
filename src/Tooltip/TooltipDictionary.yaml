@@ -218,7 +218,7 @@ dependencyEntryPoint: Overrides the image ENTRYPOINT. Commands should be in exec
 dependencyArgs: Overrides the image COMMAND
 dockerHubRepository:
     content: |-
-        The name of the registry. For example, `plugins/s3`.
+        The name of the repo. Use the format `<hub-user>/<repo-name>`.
 
         When using private Docker registries, use a fully qualified repo name.
     width: "400"

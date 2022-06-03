@@ -73,13 +73,19 @@ jfrogArt_name: |-
     Enter a name for this step.
 
     The [Upload Artifacts to JFrog Artifactory](https://ngdocs.harness.io/article/gjoggc66fy) step creates a Docker image from a Dockerfile and pushes it to a JFrog Artifactory Docker repository.
-conditionalExecution: |-
-    Conditional Execution uses JEXL operators and expressions. [Learn More](https://commons.apache.org/proper/commons-jexl/reference/syntax.html)
-     
-    Examples:
+conditionalExecution:
+    content: |-
+        Conditional Execution lets you set when and if to run or skip a stage. [Learn More](https://newdocs.helpdocs.io/article/i36ibenkq2)
 
-    `<+steps.mystep.output.status> == “success”`
-    `<+environment.name> != “QA”`
+        Conditional Execution uses JEXL operators and expressions.
+         
+        Examples:
+
+        `<+steps.mystep.output.status> == “success”`
+        `<+environment.name> != “QA”`
+
+        [Learn More about JEXL](https://commons.apache.org/proper/commons-jexl/reference/syntax.html)
+    width: "500"
 projectsForm_name: Enter a name for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4)
 projectsForm_color: Select a color for the project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4)
 projectsForm_orgIdentifier: Select an org for your project. [Learn more](https://ngdocs.harness.io/article/36fw2u92i4)
@@ -4128,17 +4134,12 @@ serverlessAwsLambda_configOverridePath:
 
         The is the same as the `--config` option in `serverless deploy`. See [AWS - deploy](https://www.serverless.com/framework/docs/providers/aws/cli-reference/deploy) from Serverless.
     width: "400"
-
 serviceNowCreate_name:
-
     content: "Enter a name that describes the step. "
-
     width: "400"
-
 serviceNowCreate_timeout:
-
     content: |-
-
+        
         Enter a timeout for this step. 
 
         You can use:
@@ -4158,38 +4159,22 @@ serviceNowCreate_timeout:
         The maximum is `53w`.
 
         Timeouts can be set at the Pipeline level also.
-
     width: "400"
-
 serviceNowCreate_spec.connectorRef:
-
     content: Create or select the [ServiceNow Connector](https://ngdocs.harness.io/article/illz8off8q-connect-to-service-now).
-
     width: "400"
-
 serviceNowCreate_spec.description:
-
     content: Enter the ticket description.
-
     width: "400"
-
 serviceNowCreate_spec.shortDescription:
-
     content: Enter a description of the ticket you are creating. This will be the title of the ticket.
-
     width: "400"
 ServiceNowSelectFromFieldList:
-
     content: Select from the fields Harness retrieved from ServiceNow using the ServiceNow Connector and Ticket Type.
-
     width: "400"
-
 ServiceNowProvideFromFieldList:
-
     content: Add fields for the ticket. The properties are specified as key-value pairs, the name being the field name (not the label) in ServiceNow and a valid value.
-
     width: "400"
-
 ciBuildInfra_harnessImageConnectorRef:
     content: |-
         By default, Harness pulls certain images from public Docker Hub repos that are needed to run a build. You can override this by using a Connector that downloads these images from the Harness Container Image Registry instead. 
@@ -4197,4 +4182,21 @@ ciBuildInfra_harnessImageConnectorRef:
         This option is useful when your default Delegate cannot access the public registry (due to security policies in your organization, for example, or if your infrastructure is running in a private cloud).
 
         To override how the Build Stage pulls these images, create a Connector as described in [Connect to Harness Container Image Registry Using Docker Connector](https://ngdocs.harness.io/article/my8n93rxnw).
+    width: "400"
+conditionalExecutionCustomStage:
+    content: |-
+        Conditional Execution lets you set when and if to run or skip a stage. [Learn More](https://newdocs.helpdocs.io/article/i36ibenkq2)
+
+        Conditional Execution uses JEXL operators and expressions.
+          
+          
+        Examples:
+
+        `<+steps.mystep.output.status> == “success”`
+        `<+environment.name> != “QA”`
+
+        [Learn More about JEXL](https://commons.apache.org/proper/commons-jexl/reference/syntax.html)
+    width: "500"
+failureStrategyCustomStage:
+    content: Define the failure strategy for all steps and step groups in the stage. The stage-level strategy is overridden by step and step group failure strategies, if present. [Learn More](https://newdocs.helpdocs.io/article/htrur23poj)
     width: "400"

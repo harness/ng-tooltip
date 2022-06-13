@@ -4467,3 +4467,15 @@ kustomizeGit_patchesPaths:
 
         [Watch a video](https://youtu.be/dVk6-8tfwJc)
     width: "400"
+ff_flagFilters_potentiallyStaleFlags:
+    content: Flags are marked as potentially stale if they haven’t been been changed or evaluated in the last 60 days.
+    width: "400"
+ff_flagFilters_enabledFlags:
+    content: Flags that are currently toggled ON.
+    width: "400"
+ff_flagFilters_permanentFlags:
+    content: Flags you intend to stay in your systems indefinitely and that you marked as permanent when creating them. Permanent flags are never marked as stale.
+    width: "400"
+ff_flagFilters_activeFlags:
+    content: Flags that have been changed in the last 24 hours. Changes include new flag evaluations, enabling or disabling a flag, or adding new rules or targets.
+    width: "400"

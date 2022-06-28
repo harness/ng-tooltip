@@ -4567,3 +4567,18 @@ frameworkVersion:
 runTestsNamespaces:
     content: A comma-separated list of the Namespace prefixes that you want to test. This field is required.
     width: "400"
+ff_flagFilters_enabledFlags:
+    content: "All Flags that are currently toggled on, including Flags that haven't been evaluated yet and Flags that are potentially stale. "
+    width: "400"
+ff_flagFilters_permanentFlags:
+    content: Flags you intend to stay in your systems indefinitely and that you marked as permanent when creating them. Permanent flags are never marked as stale.
+    width: "400"
+ff_flagFilters_recentlyAccessed:
+    content: Flags that have been changed in the last 24 hours. Changes include new flag evaluations, enabling or disabling a flag, or adding new rules or targets.
+    width: "400"
+ff_flagFilters_activeFlags:
+    content: Flags that have been enabled and evaluated. This excludes potentially stale Flags.
+    width: "400"
+ff_flagFilters_potentiallyStaleFlags:
+    content: Flags that haven’t been been changed or evaluated in the last 60 days.
+    width: "400"

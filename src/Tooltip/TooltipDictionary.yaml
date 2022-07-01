@@ -4567,3 +4567,76 @@ frameworkVersion:
 runTestsNamespaces:
     content: A comma-separated list of the Namespace prefixes that you want to test. This field is required.
     width: "400"
+CustomApproval_stepName_StepConfig:
+    content: A Custom Approval step can approve or reject a stage at any point in its execution. You add a script to this step and use its results as approval and rejection criteria. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+    width: "400"
+universalInputNameWithId:
+    content: Harness entities and resources include a unique Id (Identifier) that is immutable once the entity is created. Ids provide a permanent way to refer to an entity and avoid issues that can arise when an entity name is changed. [Learn More](https://ngdocs.harness.io/article/7rsydu6iq2)
+    width: "400"
+CustomApprovalForm_name:
+    content: Enter a name for this step.
+    width: "400"
+CustomApprovalForm_timeout:
+    content: Enter how long you want Harness to try to complete the step before failing (and initiating the stage or step [Failure Strategy](https://ngdocs.harness.io/article/0zvnn5s1ph)).
+    width: "400"
+CustomApprovalForm_spec.shell:
+    content: Select the script language.
+    width: "400"
+CustomApprovalForm_spec.source.spec.script:
+    content: |-
+        Enter your script. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+
+        The script is executed on the host of the Harness Delegate that runs the step. The script is not executed on the deployment target host(s).
+
+        You can select one or more specific Delegates using the **Delegate Selector** setting in the step's **Advanced** settings.
+    width: "400"
+CustomApprovalForm_spec.retryInterval:
+    content: |-
+        Set how long the step should wait to run the script again if the Approval or Rejection criteria evaluate to `false`. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+
+        The number of times a script executes depends on the **Retry Interval**,  **Script Timeout**, and how fast the script executes.
+    width: "400"
+CustomApprovalForm_spec.scriptTimeout:
+    content: Set how long the step should wait for the script to complete before timing out. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+    width: "400"
+CustomApprovalForm_spec.outputVariables:
+    content: You can output variables from the script to be used in subsequent Pipeline steps or in this step's acceptance and rejection criteria. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+    width: "400"
+approvalapprovalCriteria:
+    content: |-
+        The **Approval Criteria** in the step determines if the stage is approved.
+
+
+        When an evaluation results in a Boolean `true`, the approval criteria is met.
+
+        You can specify criteria using **Conditions** and/or **JEXL Expression**. If you use them in combination, they both must evaluate to a Boolean `true` for the step to be approved.
+
+
+
+        **Approval Criteria** is mandatory, but you can also set **Rejection Criteria**. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+    width: "400"
+CustomApprovalForm_spec.environmentVariables:
+    content: |-
+        While you can simply declare a variable in your script using a Harness expression or string for its value, using **Input Variables** provides some additional benefits:
+
+        - You can easily identify and manage the Harness expressions used in your script.
+        - You can template your script.
+
+        You can declare the variable using **Name** and **Value** in **Script Input Variables** and then reference the variable in the script just as you would any other variable: `$var_name`. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+    width: "400"
+approvalrejectionCriteria:
+    content: |-
+        Define criteria for rejecting the approval.
+
+        If you add rejection criteria it is used in addition to the settings in **Approval Criteria**. 
+
+        Both **Rejection Criteria** and **Approval Criteria** must evaluate to a Boolean `true` for the step to be successful. [Learn More](https://ngdocs.harness.io/article/9ulc3vrpf2)
+    width: "400"
+pipelineAdvancedSteps_delegateSelectors:
+    content: |-
+        Select the Delegate(s) you want to use to execute this step.
+
+        You can select one or more Delegates for each Pipeline step.
+
+        You only need to select one of a Delegate's Tags to select it. All Delegates with the Tag are selected. [Learn More](https://ngdocs.harness.io/article/nnuf8yv13o)
+    width: "400"
